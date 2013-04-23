@@ -6,6 +6,6 @@ INSTALATION
 
 RUNNING CF
 ===========
-* vagrant ssh
-* cd /cf-deploy
-* sudo foreman start
+* `vagrant ssh`
+* `cd /cf-deploy`
+* `sudo foreman start`
