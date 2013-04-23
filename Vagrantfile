@@ -15,7 +15,7 @@ Vagrant::Config.run do |config|
     chef.add_recipe "apt"
     chef.add_recipe "git"
     chef.add_recipe "dea::packages"
-    chef.add_recipe "dea::dea"
+    chef.add_recipe "dea::install"
     chef.add_recipe "warden::install"
     chef.add_recipe "warden::install_rootfs"
     chef.add_recipe "uaa::repositories"

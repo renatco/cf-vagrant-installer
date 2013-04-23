@@ -3,3 +3,4 @@ chef/tmp
 .vagrant*
 *#
 .#*
+cf-deploy/dea_ng
