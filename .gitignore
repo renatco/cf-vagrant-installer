@@ -1,5 +1,9 @@
 *~
 chef/tmp
 .vagrant*
+dea_ng
+uaa
+cloud_controller_ng
+gorouter
 *#
 .#*
