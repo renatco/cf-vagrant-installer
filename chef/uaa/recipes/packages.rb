@@ -1,6 +1,6 @@
 packages = %w(
+  openjdk-6-jdk
   maven
-
 )
 
 # TODO: Add sun-java6-jdk
