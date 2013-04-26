@@ -22,7 +22,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, guest: 4222, host: 4222 # NATS
   config.vm.network :forwarded_port, guest: 5678, host: 5678 # DirectoryServerV2
-  config.vm.network :forwarded_port, guest: 8080, host: 80 # API cloud_controller_ng  
+  config.vm.network :forwarded_port, guest: 80, host: 8080 # API cloud_controller_ng  
   
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
@@ -94,7 +94,7 @@ Vagrant.configure("2") do |config|
   # end
 
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path    = ["./chef/cookbooks", "./chef"]
+    chef.cookbooks_path    = ["./chef"]
     chef.provisioning_path = "/var/vagrant-chef"
     chef.log_level         = :debug
     chef.add_recipe "apt"
