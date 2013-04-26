@@ -9,7 +9,3 @@ apt_repository "hardy-update" do
   distribution "hardy-updates"
   components %w(main multiverse)
 end
-
-execute "apt-get update" do
-  user "root"
-end
