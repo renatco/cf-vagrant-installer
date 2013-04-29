@@ -6,7 +6,6 @@ REQUERIMENTS
 INSTALATION
 ===========
 
-* run `rake bootstrap`
 * run `vagrant up`
 
 RUNNING CF
