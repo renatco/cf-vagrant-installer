@@ -1,3 +1,7 @@
+REQUERIMENTS ===========
+
+* vagrant = 1.2
+
 INSTALATION
 ===========
 
