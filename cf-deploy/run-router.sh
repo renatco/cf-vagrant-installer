@@ -1,3 +1,3 @@
 #!/bin/bash
 cd gorouter
-./bin/router
+./bin/router -c=config/gorouter.yml
