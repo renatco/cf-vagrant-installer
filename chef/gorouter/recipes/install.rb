@@ -1,5 +1,4 @@
-DEPLOY_PATH   = "/cf-deploy"
-GOROUTER_PATH = "#{DEPLOY_PATH}/gorouter"
+GOROUTER_PATH = "/cf-deploy/gorouter"
 
 git GOROUTER_PATH do
   repository "git://github.com/cloudfoundry/gorouter.git"
