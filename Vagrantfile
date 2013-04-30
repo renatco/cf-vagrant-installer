@@ -22,8 +22,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.network :forwarded_port, guest: 4222, host: 4222 # NATS
   config.vm.network :forwarded_port, guest: 5678, host: 5678 # DirectoryServerV2
-  config.vm.network :forwarded_port, guest: 80, host: 8080 # API cloud_controller_ng  
-  
+  config.vm.network :forwarded_port, guest: 80, host: 8080 # API cloud_controller_ng
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -92,6 +92,8 @@ Vagrant.configure("2") do |config|
   #   # You may also specify custom JSON attributes:
   #   chef.json = { :mysql_password => "foo" }
   # end
+
+
 
   config.vm.provision :chef_solo do |chef|
     chef.cookbooks_path    = ["./chef"]
