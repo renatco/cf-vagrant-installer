@@ -4,6 +4,12 @@ execute "git clone dea_ng" do
   action :run
 end
 
+execute "dea submodules update" do
+  cwd "/cf-deploy/dea_ng"
+  command "git submodule update --init"
+  action :run
+end
+
 execute "install dea gems" do
   cwd "/cf-deploy/dea_ng"
   command "bundle install"
