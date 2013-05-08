@@ -1,4 +1,4 @@
 #!/bin/bash
-
+export rvmsudo_secure_path=1
 cd /warden/warden
 rvmsudo bundle exec rake warden:start[config/test_vm.yml] 
