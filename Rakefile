@@ -40,13 +40,21 @@ namespace :cf do
 
 
   desc "bootstrap all cf components"
-  task :bootstrap => [:bundle_install, :init_uaa]
+  task :bootstrap => [:bundle_install, :init_uaa, :init_cloud_controller_ng]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
     ruby_components = %w(warden cloud_controller_ng dea_ng)
     ruby_components.each{|c| bundle_install path(c)}
   end
+
+  desc "Init cloud_controller_ng database"
+  task :init_cloud_controller_ng do
+    puts "Initializing cloud_controller_ng database."
+    Dir.chdir root_path + '/cloud_controller_ng'
+    system "sudo -E bundle exec rake db:migrate"
+  end
+
 
   desc "Init uaa"
   task :init_uaa => [:clone_uua_repo, :install_uua_required_pkgs]
