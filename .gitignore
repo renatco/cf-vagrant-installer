@@ -4,7 +4,3 @@ chef/tmp
 *.swp
 *#
 .#*
-cloud_controller_ng
-dea_ng
-gorouter
-uaa
