@@ -2,9 +2,9 @@
 chef/tmp
 .vagrant*
 *.swp
-dea_ng
-uaa
-cloud_controller_ng
-gorouter
 *#
 .#*
+cloud_controller_ng
+dea_ng
+gorouter
+uaa
