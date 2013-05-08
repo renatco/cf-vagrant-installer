@@ -38,14 +38,17 @@ namespace :cf do
     system "bundle install"
   end
 
+  def cf_ruby_components
+    %w(warden cloud_controller_ng dea_ng)
+  end
 
   desc "bootstrap all cf components"
-  task :bootstrap => [:bundle_install, :init_uaa, :init_cloud_controller_ng, :init_gorouter]
+  task :bootstrap => [:bundle_install, :init_uaa,
+        :init_cloud_controller_ng, :init_gorouter, :copy_custom_conf_files]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
-    ruby_components = %w(warden cloud_controller_ng dea_ng)
-    ruby_components.each{|c| bundle_install path(c)}
+    cf_ruby_components.each{|c| bundle_install path(c)}
   end
 
   desc "Init cloud_controller_ng database"
@@ -73,6 +76,20 @@ namespace :cf do
   desc "Install uaa required packages"
   task :install_uua_required_pkgs do
     system "sudo apt-get install --yes maven"
+  end
+
+  def cf_components
+    cf_ruby_components + %w(uaa gorouter)
+  end
+
+  desc "copy custom config files"
+  task :copy_custom_conf_files do
+    cf_components.each do |c|
+      cmd = "cp #{root_path}/custom_config_files/#{c}/*.yml #{root_path}/#{c}/config/"
+      puts "==> Copying #{c} config file"
+      puts "==> #{cmd}"
+      system cmd
+    end
   end
 
 end
