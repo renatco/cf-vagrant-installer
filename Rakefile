@@ -40,7 +40,7 @@ namespace :cf do
 
 
   desc "bootstrap all cf components"
-  task :bootstrap => [:bundle_install, :init_uaa, :init_cloud_controller_ng]
+  task :bootstrap => [:bundle_install, :init_uaa, :init_cloud_controller_ng, :init_gorouter]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
