@@ -18,6 +18,10 @@ end
 # -------------------------------------------------------------
 # Guest tasks
 
+def root_path
+  File.expand_path("../", __FILE__)
+end
+
 def path(component)
   return '/warden/warden' if component == 'warden'
   File.expand_path("../#{component}", __FILE__)
@@ -33,4 +37,10 @@ desc "Install required gems for all ruby components"
 task :bundle_install do
   ruby_components = %w(warden cloud_controller_ng dea_ng)
   ruby_components.each{|c| bundle_install path(c)}
+end
+
+desc "Clone uaa repo"
+task :clone_uua_repo do
+  Dir.chdir root_path
+  system "git clone git://github.com/cloudfoundry/uaa.git"
 end

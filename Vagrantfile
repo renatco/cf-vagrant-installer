@@ -26,8 +26,8 @@ Vagrant.configure("2") do |config|
     chef.cookbooks_path    = ["./chef"]
     chef.provisioning_path = "/var/vagrant-chef"
     chef.log_level         = :debug
-    #chef.add_recipe "apt"
-    #chef.add_recipe "git"
+    chef.add_recipe "apt"
+    chef.add_recipe "git"
     #chef.add_recipe "dea::packages" // ToDo: REMOVE from recipes and here
     # chef.add_recipe "dea::install"
   #  chef.add_recipe "uaa::repositories"
