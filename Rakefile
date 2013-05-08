@@ -59,7 +59,7 @@ namespace :cf do
 
   desc "Install uaa required packages"
   task :install_uua_required_pkgs do
-    system "sudo apt-get install maven"
+    system "sudo apt-get install --yes maven"
   end
 
 end
