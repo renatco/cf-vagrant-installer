@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     #chef.add_recipe "apt"
     #chef.add_recipe "git"
     #chef.add_recipe "dea::packages" // ToDo: REMOVE from recipes and here
-    chef.add_recipe "dea::install"
+    # chef.add_recipe "dea::install"
   #  chef.add_recipe "uaa::repositories"
   #  chef.add_recipe "uaa::packages"
   #  chef.add_recipe "uaa::install"
