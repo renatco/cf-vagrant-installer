@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cd /vagrant/dea_ng
+bin/dea config/dea.yml
+

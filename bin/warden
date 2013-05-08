@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /warden/warden
+rvmsudo bundle exec rake warden:start[config/test_vm.yml] 

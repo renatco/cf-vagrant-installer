@@ -15,14 +15,22 @@ task :update_git_submodules do
   system "git submodule update --init --recursive"
 end
 
-def bundle_install(component)
-  puts "==> Bundle install #{component}"
-  Dir.chdir component
+# -------------------------------------------------------------
+# Guest tasks
+
+def path(component)
+  return '/warden/warden' if component == 'warden'
+  File.expand_path("../#{component}", __FILE__)
+end
+
+def bundle_install component_path
+  puts "==> Runing bundle install at #{component_path}"
+  Dir.chdir component_path
   system "bundle install"
 end
 
 desc "Install required gems for all ruby components"
 task :bundle_install do
-  ruby_components = %w(cloud_controller_ng dea_ng)
-  ruby_components.each{|c| bundle_install c}
+  ruby_components = %w(warden cloud_controller_ng dea_ng)
+  ruby_components.each{|c| bundle_install path(c)}
 end
