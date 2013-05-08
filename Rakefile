@@ -55,6 +55,11 @@ namespace :cf do
     system "sudo -E bundle exec rake db:migrate"
   end
 
+  desc "Init gorouter"
+  task :init_gorouter do
+    Dir.chdir root_path + '/gorouter'
+    system "./bin/go install router/router"
+  end
 
   desc "Init uaa"
   task :init_uaa => [:clone_uua_repo, :install_uua_required_pkgs]
