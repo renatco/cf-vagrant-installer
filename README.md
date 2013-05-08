@@ -24,20 +24,9 @@ git submodule update --init --recursive
 # bundle install
 # rake test_vm
 rake bootstrap
-
-# create your test VM
-rake test_vm
 ```
 
-We will build a Vagrant VM with the mechanisims provided by DEA_NG
-
-# create your test VM
-cd dea_ng
-rake test_vm
 ```
-This will take a while...
-
-```shell
 # Go back to the repo root folder and initialize the test VM
 cd ..
 vagrant up
