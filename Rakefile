@@ -44,7 +44,8 @@ namespace :cf do
 
   desc "bootstrap all cf components"
   task :bootstrap => [:bundle_install, :init_uaa,
-        :init_cloud_controller_ng, :init_gorouter, :copy_custom_conf_files]
+        :init_cloud_controller_ng, :init_gorouter,
+        :copy_custom_conf_files]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -93,4 +94,13 @@ namespace :cf do
     end
   end
 
+  desc "Set target, login and create organization and spaces"
+  task :init_cf_console do
+    puts "==> Initializing cf console"
+    system "#{root_path}/bin/init-cf-console"
+    puts "\n\nNow you can try to push the example app, like this:"
+    puts ""
+    puts "> cd /vagrant/sinatra-test-app"
+    puts "> cf push"
+  end
 end
