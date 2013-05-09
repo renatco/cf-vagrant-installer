@@ -1,9 +1,9 @@
 This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
 * NATS
 * DEA
-** Directory Server
-** File Server
-** Warden
+  * Directory Server
+  * File Server
+  * Warden
 * Cloud Controller
 * Gorouter
 * UAA
@@ -18,6 +18,7 @@ INSTALATION
 ===========
 It is done in two phases (rake tasks)
 * Host
+
 ```
 # clone the repo
 git clone https://github.com/Altoros/cf-vagrant-installer.git
@@ -25,6 +26,7 @@ cd cf-vagrant-installer
 # Set up host computer
 rake host:bootstrap
 ```
+
 This will take a some time... 
 
 Initialize vagrant VM
@@ -33,6 +35,7 @@ vagrant up
 ```
 
 * Guest (inside Vagrant VM)
+
 ```
 # Shell into the VM 
 vagrant ssh
@@ -42,6 +45,7 @@ rake cf:bootstrap
 
 RUNNING CF
 ===========
+
 ```
 # shell into the VM if you are not already there
 vagrant ssh
@@ -49,12 +53,15 @@ vagrant ssh
 cd /vagrant
 foreman start
 ```
+
 Note: UAA requires lot of dependencies which will download only once.
 
 TEST YOUR CF
 ===========
 * Set up your PaaS account
-** You can do it manually:
+You can do it:
+Manually:
+
 ```
 cf target http://127.0.0.1:8181
 cf login
@@ -66,14 +73,17 @@ cf create_space
 >my_space
 cf switch_space my_space
 ```
-** Or automatically
+
+Or automatically:
+
 ```
 cd /vagrant
 rake cf:init_cf_console 
-``
+```
 
 * Push a very simple application
 There is a very simple sinatra app included in the repo which we will use as an example
+
 ```
 cd /vagrant/sinatra-test-app
 cf push
@@ -86,12 +96,16 @@ Domain> vcap.me
 Create services for application?> n
 Save configuration?> n
 ```
+
 You are supposed to get:
+
 ```
 Uploading my_app... OK
 Starting my_app... OK
 ```
+
 This is a staging step. WARN: it will not deploy yet :(
+
 ```
 -----> Downloaded app package (4.0K)
 Installing ruby.
