@@ -9,13 +9,13 @@ This project provides a mechanism to automate several tasks to be able to set up
 * UAA
 
 REQUIREMENTS
-===========
+--
 * vagrant = 1.2
 ```vagrant --version```
 * Ruby 1.9.3
 
 INSTALATION
-===========
+--
 It is done in two phases (rake tasks)
 * Host
 
@@ -44,7 +44,7 @@ rake cf:bootstrap
 ```
 
 RUNNING CF
-===========
+--
 
 ```
 # shell into the VM if you are not already there
@@ -57,7 +57,7 @@ foreman start
 Note: UAA requires lot of dependencies which will download only once.
 
 TEST YOUR CF
-===========
+--
 * Set up your PaaS account
 You can do it:
 Manually:
@@ -128,3 +128,9 @@ Application failed to stage
 
 
 Given that we are building everything up from the source code repositories, we are hitting some roadblocks which we are trying to fix collaborating with the vcap-dev mailing list.
+
+
+
+Collaborate
+--
+You are welcome to contribute via pull request
