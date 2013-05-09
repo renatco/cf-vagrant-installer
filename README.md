@@ -133,4 +133,4 @@ Given that we are building everything up from the source code repositories, we a
 
 Collaborate
 --
-You are welcome to contribute via pull request
+You are welcome to contribute via [pull request](https://help.github.com/articles/using-pull-requests)
