@@ -1,55 +1,62 @@
-REQUERIMENTS
-===========
+This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
+* NATS
+* DEA
+** Directory Server
+** File Server
+** Warden
+* Cloud Controller
+* Gorouter
+* UAA
 
+REQUIREMENTS
+===========
 * vagrant = 1.2
+```vagrant --version```
 * Ruby 1.9.3
 
 INSTALATION
 ===========
-
-```shell
+It is done in two phases (rake tasks)
+* Host
+```
 # clone the repo
 git clone https://github.com/Altoros/cf-vagrant-installer.git
-
-
-# check that your version of vagrant is 1.1 or greater
-vagrant --version
-
-# Initialize submodules and install dependencies
-git submodule update --init --recursive
-
-# ToDo - this should: 
-# cd dea_ng 
-# git submodule update --init (instead of loading all buildbacks we can just start with ruby. Go has to be included)
-# bundle install
-# rake test_vm
-rake bootstrap
+cd cf-vagrant-installer
+# Set up host computer
+rake host:bootstrap
 ```
+This will take a some time... 
 
+Initialize vagrant VM
 ```
-# Go back to the repo root folder and initialize the test VM
-cd ..
 vagrant up
+```
+
+* Guest (inside Vagrant VM)
+```
+# Shell into the VM 
+vagrant ssh
+cd /vagrant
+rake cf:bootstrap
 ```
 
 RUNNING CF
 ===========
 ```
-# shell into the VM
+# shell into the VM if you are not already there
 vagrant ssh
 
-cd /cf
-sudo foreman start
+cd /vagrant
+foreman start
 ```
+Note: UAA requires lot of dependencies which will download only once.
 
-TESTING CF
+TEST YOUR CF
 ===========
-Install cloudfoundry (cf) gem
-`sudo gem install cf` (ToDo: determine which version should be)
-
-Set up your PaaS account
+* Set up your PaaS account
+** You can do it manually:
 ```
-cf target 127.0.0.1...
+cf target http://127.0.0.1:8181
 cf login
 >email: admin
 >password: password
@@ -59,12 +66,51 @@ cf create_space
 >my_space
 cf switch_space my_space
 ```
-
-There is a very simple sinatra app included in the repo which you can push.
+** Or automatically
 ```
-cd /cf/sinatra-app
-push
-```
-Just follow the default options and wait until it gets up and running
+cd /vagrant
+rake cf:init_cf_console 
+``
 
-to be continue...
+* Push a very simple application
+There is a very simple sinatra app included in the repo which we will use as an example
+```
+cd /vagrant/sinatra-test-app
+cf push
+Name> my_app
+Instances> 1
+Custom startup command> none
+Memory Limit> 256M
+Subdomain> my_app
+Domain> vcap.me
+Create services for application?> n
+Save configuration?> n
+```
+You are supposed to get:
+```
+Uploading my_app... OK
+Starting my_app... OK
+```
+This is a staging step. WARN: it will not deploy yet :(
+```
+-----> Downloaded app package (4.0K)
+Installing ruby.
+-----> Using Ruby version: ruby-1.9.2
+-----> Installing dependencies using Bundler version 1.3.2
+       Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin --deployment
+       Fetching gem metadata from http://rubygems.org/..........
+       Fetching gem metadata from http://rubygems.org/..
+       Installing rack (1.5.1)
+       Installing rack-protection (1.3.2)
+       Installing tilt (1.3.3)
+       Installing sinatra (1.3.4)
+       Using bundler (1.3.2)
+       Your bundle is complete! It was installed into ./vendor/bundle
+       Cleaning up the bundler cache.
+-----> Uploading staged droplet (21M)
+Checking my_app...
+Application failed to stage
+```
+
+
+Given that we are building everything up from the source code repositories, we are hitting some roadblocks which we are trying to fix collaborating with the vcap-dev mailing list.
