@@ -4,4 +4,4 @@ chef/tmp
 *.swp
 *#
 .#*
-uaa
+uaa/
