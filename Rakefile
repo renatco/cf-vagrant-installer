@@ -49,6 +49,7 @@ namespace :cf do
   desc "Install required gems for all ruby components"
   task :bundle_install do
     cf_ruby_components.each{|c| bundle_install path(c)}
+    system "gem install cf"
   end
 
   desc "Init cloud_controller_ng database"
