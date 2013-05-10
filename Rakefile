@@ -39,7 +39,7 @@ namespace :cf do
   end
 
   def cf_ruby_components
-    %w(warden cloud_controller_ng dea_ng)
+    %w(warden cloud_controller_ng dea_ng health_manager)
   end
 
   desc "bootstrap all cf components"
@@ -94,7 +94,7 @@ namespace :cf do
     end
   end
 
-  desc "Set target, login and create organization and spaces"
+  desc "Set target, login and create organization and spaces. CF must be up and running"
   task :init_cf_cli do
     puts "==> Initializing cf CLI"
     system "#{root_path}/bin/init-cf-cli"
