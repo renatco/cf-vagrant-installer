@@ -39,7 +39,7 @@ namespace :cf do
   end
 
   def cf_ruby_components
-    %w(warden cloud_controller_ng dea_ng)
+    %w(warden cloud_controller_ng dea_ng health_manager)
   end
 
   desc "bootstrap all cf components"
