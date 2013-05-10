@@ -7,6 +7,7 @@ This project provides a mechanism to automate several tasks to be able to set up
 * Cloud Controller
 * Gorouter
 * UAA
+* Health Manager
 
 REQUIREMENTS
 --
