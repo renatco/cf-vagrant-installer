@@ -6,3 +6,4 @@ file_server: ./bin/file_server
 dea_ng: ./bin/dea_ng
 gorouter: ./bin/gorouter
 cc_ng: ./bin/cloud_controller
+health_manager: ./bin/health_manager
