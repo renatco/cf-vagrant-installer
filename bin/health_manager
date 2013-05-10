@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd /vagrant/health_manager
+./bin/health_manager
