@@ -95,9 +95,9 @@ namespace :cf do
   end
 
   desc "Set target, login and create organization and spaces"
-  task :init_cf_console do
-    puts "==> Initializing cf console"
-    system "#{root_path}/bin/init-cf-console"
+  task :init_cf_cli do
+    puts "==> Initializing cf CLI"
+    system "#{root_path}/bin/init-cf-cli"
     puts "\n\nNow you can try to push the example app, like this:"
     puts ""
     puts "> cd /vagrant/sinatra-test-app"
