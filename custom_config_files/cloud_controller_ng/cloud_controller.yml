@@ -4,9 +4,13 @@ port: 8181
 pid_filename: /tmp/cloud_controller.pid
 nats_uri: nats://127.0.0.1:4222
 
-external_domain: 
+system_domain_organization: vcap.me
+system_domain: vcap.me
+
+external_domain:
   - api2.vcap.me
-system_domains:
+
+app_domains:
   - vcap.me
 
 bootstrap_admin_email: sre@vmware.com
