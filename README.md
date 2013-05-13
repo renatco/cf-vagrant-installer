@@ -79,7 +79,7 @@ Or automatically:
 
 ```
 cd /vagrant
-rake cf:init_cf_console 
+rake cf:init_cf_cli 
 ```
 
 * Push a very simple application
