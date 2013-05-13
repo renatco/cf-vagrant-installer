@@ -7,6 +7,7 @@ This project provides a mechanism to automate several tasks to be able to set up
 * Cloud Controller
 * Gorouter
 * UAA
+* Health Manager
 
 REQUIREMENTS
 --
@@ -78,7 +79,7 @@ Or automatically:
 
 ```
 cd /vagrant
-rake cf:init_cf_console 
+rake cf:init_cf_cli 
 ```
 
 * Push a very simple application
