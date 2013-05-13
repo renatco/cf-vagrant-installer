@@ -6,7 +6,8 @@ base_dir: /tmp/dea_ng
 domain: vcap.me
 
 logging:
-  level: debug
+  file: /tmp/dea_ng.log
+  level: debug2
 
 local_route: localhost
 
