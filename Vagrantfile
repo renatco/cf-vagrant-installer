@@ -4,7 +4,6 @@
 Vagrant.configure("2") do |config|
   config.vm.define "cf-install"
   config.vm.box = "precise64"
-  # config.ssh.username = "travis"
   
   config.vm.provider :virtualbox do |v|
     config.vm.box_url = "http://files.vagrantup.com/precise64.box"
@@ -31,7 +30,6 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'sqlite'
     chef.add_recipe 'mysql::server'
     chef.add_recipe 'postgresql::server'
-    # chef.add_recipe 'redis'
     
     chef.add_recipe 'rbenv-alias'
     chef.add_recipe 'cloudfoundry::warden'
