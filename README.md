@@ -124,12 +124,27 @@ Installing ruby.
        Cleaning up the bundler cache.
 -----> Uploading staged droplet (21M)
 Checking my_app...
-Application failed to stage
+  1/1 instances: 1 running
+OK
 ```
 
+you can check if the app is running and working ok with curl:
 
-Given that we are building everything up from the source code repositories, we are hitting some roadblocks which we are trying to fix collaborating with the vcap-dev mailing list.
+```
+curl mi-app.vcap.me
+Hello!
+```
 
+and use "cf apps" command to list the apps you pushed:
+
+```
+
+cf apps
+Getting applications in myspace... OK
+
+name    status    usage     url          
+miapp   running   1 x 64M   mi-app.vcap.me
+```
 
 
 Collaborate
