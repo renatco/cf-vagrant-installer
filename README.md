@@ -131,7 +131,7 @@ OK
 you can check if the app is running and working ok with curl:
 
 ```
-curl mi-app.vcap.me
+curl mi_app.vcap.me
 Hello!
 ```
 
@@ -143,7 +143,7 @@ cf apps
 Getting applications in myspace... OK
 
 name    status    usage     url          
-miapp   running   1 x 64M   mi-app.vcap.me
+mi_app   running   1 x 64M   mi_app.vcap.me
 ```
 
 
