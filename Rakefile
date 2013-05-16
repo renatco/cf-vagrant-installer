@@ -42,13 +42,13 @@ namespace :cf do
   desc "bootstrap all cf components"
   task :bootstrap => [:copy_custom_conf_files,
         :bundle_install, :init_uaa,
-        :init_cloud_controller_ng, :init_gorouter ]
+        :init_cloud_controller_ng, :init_gorouter, :setup_warden ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
     cf_ruby_components.each{|c| bundle_install path(c)}
-    system "gem install cf"
-    system "gem install foreman"
+    system "gem install cf --no-ri --no-rdoc"
+    system "gem install foreman --no-ri --no-rdoc"
     system "rbenv rehash"
   end
 
@@ -68,7 +68,7 @@ namespace :cf do
   desc "Init uaa"
   task :init_uaa do
     Dir.chdir root_path + '/uaa'
-    system "mvn package"
+    system "mvn package -DskipTests"
   end
 
   desc "copy custom config files"
@@ -79,6 +79,13 @@ namespace :cf do
       puts "==> #{cmd}"
       system cmd
     end
+  end
+
+  desc "set up warden"
+  task :setup_warden do
+    puts "==> Warden setup"
+    Dir.chdir root_path + '/warden/warden'
+    system "sudo bundle exec rake setup:bin[config/test_vm.yml]"
   end
 
   desc "Set target, login and create organization and spaces. CF must be up and running"
