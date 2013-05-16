@@ -124,7 +124,7 @@ Uploading my_app... OK
 Starting my_app... OK
 ```
 
-This is a staging step. WARN: it will not deploy yet :(
+Staging step.
 
 ```
 -----> Downloaded app package (4.0K)
