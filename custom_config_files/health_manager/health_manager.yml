@@ -10,7 +10,7 @@ local_route: 127.0.0.1
 mbus: nats://127.0.0.1:4222/
 
 logging:
-  file: /tmp/health_manager.log
+  file: /vagrant/logs/health_manager.log
   level: debug
 
 # pid: /var/vcap/sys/run/healthmanager2.pid

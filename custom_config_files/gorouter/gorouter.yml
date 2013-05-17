@@ -10,7 +10,7 @@ nats:
   pass:
 
 logging:
-  file: /tmp/gorouter.log
+  file: /vagrant/logs/gorouter.log
   syslog:
   level: debug
 
