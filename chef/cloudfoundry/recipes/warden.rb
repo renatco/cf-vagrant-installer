@@ -32,6 +32,7 @@ execute "download warden rootfs from s3" do
     mkdir -p #{ROOT_FS}
     curl -s #{ROOT_FS_URL} | tar xzf - -C #{ROOT_FS}
   BASH
+  not_if { ::File.exists?(ROOT_FS)}
 end
 
 execute "copy resolv.conf from outside container" do
