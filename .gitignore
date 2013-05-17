@@ -5,3 +5,4 @@ chef/tmp
 *.lock
 *#
 .#*
+logs/
