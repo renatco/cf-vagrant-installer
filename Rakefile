@@ -52,9 +52,11 @@ namespace :cf do
     system "rbenv rehash"
   end
 
-  desc "Init cloud_controller_ng database"
+  desc "Init cloud_controller_ng database - Erases it if exists"
   task :init_cloud_controller_ng do
     puts "Initializing cloud_controller_ng database."
+    Dir.chdir root_path
+    system "rm db/cloud_controller.db"
     Dir.chdir root_path + '/cloud_controller_ng'
     system "sudo -E bundle exec rake db:migrate"
   end
