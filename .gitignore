@@ -6,3 +6,4 @@ chef/tmp
 *#
 .#*
 logs/
+db/*.db
