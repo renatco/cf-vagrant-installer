@@ -34,7 +34,7 @@ logging:
   level: debug2
 
 db:
-  database: "sqlite:///tmp/cloud_controller.db"
+  database: "sqlite:///vagrant/db/cloud_controller.db"
   max_connections: 32
   pool_timeout: 10
 
