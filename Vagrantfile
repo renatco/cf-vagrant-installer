@@ -14,10 +14,6 @@ Vagrant.configure("2") do |config|
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   end
 
-  # forward requests to port 8181 on the host to port 80 on the guest, which
-  # is the port that the Cloud Controller is listening on 
-  config.vm.network :forwarded_port, guest: 80, host: 8181
-
   config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
