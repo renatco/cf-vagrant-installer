@@ -78,6 +78,7 @@ Note: UAA requires lot of dependencies which will download only once.
 
 TEST YOUR CF
 --
+(this has to be done inside the VM)
 * Set up your PaaS account
 You can do it:
 Manually:
