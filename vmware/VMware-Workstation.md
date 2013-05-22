@@ -38,6 +38,5 @@ Now you can follow the documented process to bring the Cloud Foundry environment
 Once completed, and you have run `rake cf:bootstrap` in the VM, use the following script on the host to "fix" the shared folder mount:
 
 ```
-$ cd vmware
-$ ./vmware-fix-mounts.sh
+$ ./vmware/vmware-fix-mounts.sh
 ```

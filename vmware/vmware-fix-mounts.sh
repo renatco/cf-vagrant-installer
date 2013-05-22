@@ -23,7 +23,7 @@ then
   exit 1
 fi
 
-vagrant_dir=$(dirname $(readlink -f $0))
+vagrant_dir=$(dirname $(readlink -f Vagrantfile))
 echo "Vagrantfile directory: '$vagrant_dir'"
 
 echo -n 'Removing vagrant shared folders...'
@@ -39,5 +39,5 @@ sleep 5
 
 echo -n "Creating shared folder mount point..."
 vmrun -T ws -gu vagrant -gp vagrant runScriptInGuest "$precise_vmx" \
-  /bin/bash 'sudo mkdir /vagrant; sudo umount /vagrant; sudo mount -t vmhgfs -o rw,noatime,nodev '\''.host:/!%vagrant'\'' /vagrant'
+  /bin/bash 'sudo rm -f /vagrant; sudo mkdir /vagrant; sudo umount /vagrant; sudo mount -t vmhgfs -o rw,noatime,nodev '\''.host:/!%vagrant'\'' /vagrant'
 echo 'Done'
