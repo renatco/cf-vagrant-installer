@@ -71,6 +71,15 @@ RUNNING CF
 vagrant ssh
 
 cd /vagrant
+./start.sh
+
+# Also, to stop:
+./stop.sh
+
+```
+
+There is also a foreman alternative (http://ddollar.github.io/foreman/) which will print every single log into the console
+```
 foreman start
 ```
 
@@ -80,30 +89,13 @@ TEST YOUR CF
 --
 (this has to be done inside the VM)
 * Set up your PaaS account
-You can do it:
-Manually:
-
-```
-cf target http://127.0.0.1:8181
-cf login
->email: admin
->password: password
-cf create-org
->my_org
-cf create_space
->my_space
-cf switch_space my_space
-```
-
-Or automatically:
 
 ```
 cd /vagrant
-rake cf:init_cf_cli 
+rake cf:init_cf_cli
 ```
 
-* Push a very simple application
-There is a very simple sinatra app included in the repo which we will use as an example
+* Push a very simple sinatra application
 
 ```
 cd /vagrant/sinatra-test-app
@@ -118,16 +110,11 @@ Create services for application?> n
 Save configuration?> n
 ```
 
-You are supposed to get:
+Expected output:
 
 ```
 Uploading my_app... OK
 Starting my_app... OK
-```
-
-Staging step.
-
-```
 -----> Downloaded app package (4.0K)
 Installing ruby.
 -----> Using Ruby version: ruby-1.9.2
@@ -148,17 +135,15 @@ Checking my_app...
 OK
 ```
 
-you can check if the app is running and working ok with curl:
+Check if the app is running and working ok:
 
 ```
 curl mi_app.vcap.me
 Hello!
 ```
 
-and use "cf apps" command to list the apps you pushed:
-
+Use "cf apps" command to list the apps you pushed:
 ```
-
 cf apps
 Getting applications in myspace... OK
 
