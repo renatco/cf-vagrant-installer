@@ -42,7 +42,9 @@ namespace :cf do
   desc "bootstrap all cf components"
   task :bootstrap => [:copy_custom_conf_files,
         :bundle_install, :init_uaa,
-        :init_cloud_controller_ng, :init_gorouter, :setup_warden ]
+        :init_cloud_controller_ng, :init_gorouter, 
+        :setup_warden, :create_upstart_init_scripts,
+        :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -94,9 +96,31 @@ namespace :cf do
   task :init_cf_cli do
     puts "==> Initializing cf CLI"
     system "#{root_path}/bin/init-cf-cli"
-    puts "\n\nNow you can try to push the example app, like this:"
-    puts ""
-    puts "> cd /vagrant/sinatra-test-app"
-    puts "> cf push"
   end
+
+  desc "Set up Upstart init scripts"
+  task :create_upstart_init_scripts do
+    puts "==> Exporting foreman processes to upstart init config files..."
+    Dir.chdir root_path 
+    system "sudo foreman export upstart /etc/init -a cf-ng --user vagrant"
+  end
+
+  desc "Print instructions"
+  task :instructions do
+    puts 
+    puts
+    puts "*** Running CF and first steps ***"
+    puts "- Run CF:"
+    puts "    $/vagrant/start.sh"
+    puts "- Wait a moment until UAA finishes starting. You can check it out by: tail /vagrant/logs/uaa.log"
+    puts "- Initialize cf CLI with some default organization, space, etc:"
+    puts "    $rake cf:init_cf_cli"
+    puts "- Push a very simple ruby sinatra app:"
+    puts "    $cd cd /vagrant/sinatra-test-app/"
+    puts "    $cf push   (follow the defaults)"
+    puts "- Test it: "
+    puts "    $curl -v <your_app_name>.vcap.me  (It should print 'Hello!')"
+    puts 
+    puts
+  end  
 end
