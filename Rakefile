@@ -102,7 +102,7 @@ namespace :cf do
   task :create_upstart_init_scripts do
     puts "==> Exporting foreman processes to upstart init config files..."
     Dir.chdir root_path 
-    system "sudo foreman export upstart /etc/init -a cf-ng --user vagrant"
+    system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant"
   end
 
   desc "Print instructions"
