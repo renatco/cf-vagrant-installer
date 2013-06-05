@@ -120,7 +120,7 @@ namespace :cf do
     puts "    $ cd /vagrant/sinatra-test-app/"
     puts "    $ cf push   (follow the defaults)"
     puts "- Test it: "
-    puts "    $ curl -v <your_app_name>.vcap.me  (It should print 'Hello!')"
+    puts "    $ curl -v hello.vcap.me  (It should print 'Hello!')"
     puts 
     puts
   end  
