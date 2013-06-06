@@ -49,7 +49,7 @@ vagrant up
 
 Alternatively, you can use a different Vagrant provider such as the VMware Fusion provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
 
-> **Stop!!** If you are going to use the VMware provider, you ****must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
+> **Stop!!** If you are going to use the VMware provider, you **must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
 
 ```
 vagrant up --provider=vmware_fusion
