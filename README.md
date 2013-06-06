@@ -12,7 +12,7 @@ This project provides a mechanism to automate several tasks to be able to set up
 * UAA
 * Health Manager
 
-## REQUIREMENTS
+## Requirements
 
 * Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com/. After installing, make sure it is available with the following command: 
 
@@ -68,8 +68,8 @@ Alternatively, you can use a different Vagrant provider such as the VMware Fusio
 > **Stop!!** If you are going to use the VMware provider, you **must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
 
 ```
-- Fusion: vagrant up --provider=vmware_fusion
-- Workstation: vagrant up --provider=vmware_workstation
+Fusion: vagrant up --provider=vmware_fusion
+Workstation: vagrant up --provider=vmware_workstation
 ```
 
 ### Guest (inside Vagrant VM)
@@ -149,7 +149,7 @@ Installing ruby.
        Your bundle is complete! It was installed into ./vendor/bundle
        Cleaning up the bundler cache.
 -----> Uploading staged droplet (21M)
-Checking my_app...
+Checking hello...
   1/1 instances: 1 running
 OK
 ```
@@ -168,7 +168,7 @@ cf apps
 Getting applications in myspace... OK
 
 name    status    usage     url          
-hello   running   1 x 64M   my_app.vcap.me
+hello   running   1 x 64M   hello.vcap.me
 ```
 
 ## Collaborate
