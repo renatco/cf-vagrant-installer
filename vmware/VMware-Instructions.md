@@ -50,8 +50,8 @@ As a result, we need to perform a few more steps to ensure `quota` can do its jo
 ### Run Scripts On The VM
 1. Open the VMware GUI, go to the console
 2. Log in (username: `vagrant`, password: `vagrant`)
-3. Run `sudo /tmp/vmware-setup1.sh` This script will reboot the box upon completion.
-4. Once rebooted, log in again via the console and run `sudo /tmp/vmware-setup2.sh`. This script will shut the box down.
+3. Run `sudo ~/vmware-setup1.sh` This script will reboot the box upon completion.
+4. Once rebooted, log in again via the console and run `sudo ~/vmware-setup2.sh`. This script will shut the box down.
 
 ## Resume Normal Provisioning Process
 Now you can follow the documented process to bring the Cloud Foundry environment up using Vagrant. One detail - be sure to use the `vmware_workstation` or `vmware_fusion` provider:
