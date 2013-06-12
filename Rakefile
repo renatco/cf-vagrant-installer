@@ -117,7 +117,7 @@ namespace :cf do
     puts "- Initialize the cf CLI and create a default organization, space, etc:"
     puts "    $ rake cf:init_cf_cli"
     puts "- Push a very simple ruby sinatra app:"
-    puts "    $ cd /vagrant/sinatra-test-app/"
+    puts "    $ cd /vagrant/test-apps/sinatra-test-app/"
     puts "    $ cf push   (follow the defaults)"
     puts "- Test it: "
     puts "    $ curl -v hello.vcap.me  (It should print 'Hello!')"
