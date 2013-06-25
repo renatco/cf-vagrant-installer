@@ -39,18 +39,9 @@ vagrant plugin install vagrant-berkshelf
 
 ## Installation
 
-Installation requires three steps in two phases (first on the host machine, then on the guest VM).
-
-### Host
-
-Set up the project for Vagrant.
-
 ```
-# Clone The Repo
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
-
-# Set Up The Host 
 rake host:bootstrap
 ```
 
@@ -70,16 +61,6 @@ Alternatively, you can use a different Vagrant provider such as the VMware Fusio
 ```
 Fusion: vagrant up --provider=vmware_fusion
 Workstation: vagrant up --provider=vmware_workstation
-```
-
-### Guest (inside Vagrant VM)
-
-Shell into the guest VM and run the next step of the installation. 
-
-```
-vagrant ssh
-cd /vagrant
-rake cf:bootstrap
 ```
 
 ## Running Cloud Foundry
@@ -103,12 +84,12 @@ There is also a foreman alternative (http://ddollar.github.io/foreman/) which wi
 foreman start
 ```
 
-Note: UAA requires lot of dependencies which will download only once.
-
 ## Test Your New Cloud Foundry (v2) Instance
 
 (this has to be done inside the VM)
 * Set up your PaaS account
+
+> CF must be up and running
 
 ```
 cd /vagrant
@@ -120,15 +101,9 @@ rake cf:init_cf_cli
 ```
 cd /vagrant/sinatra-test-app
 cf push
-Name> hello
-Instances> 1
-Custom startup command> none
-Memory Limit> 256M
-Subdomain> hello
-Domain> vcap.me
-Create services for application?> n
-Save configuration?> n
 ```
+Leave the default values
+
 
 Expected output:
 
@@ -160,7 +135,7 @@ Check if the app is running and working ok:
 ```
 curl hello.vcap.me
 
-Hello!
+Hello from 0.0.0.0:<some assigned port>!
 ```
 
 Use "cf apps" command to list the apps you pushed:
@@ -171,6 +146,7 @@ Getting applications in myspace... OK
 name    status    usage     url          
 hello   running   1 x 64M   hello.vcap.me
 ```
+There is also a node.js sample app in test-apps
 
 ## Collaborate
 
