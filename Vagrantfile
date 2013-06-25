@@ -37,6 +37,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'cloudfoundry::warden'
     chef.add_recipe 'cloudfoundry::dea'
     chef.add_recipe 'cloudfoundry::uaa'
+    chef.add_recipe 'cloudfoundry::cf_bootstrap'
 
     chef.json = {
       'rbenv' => {
