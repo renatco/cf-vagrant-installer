@@ -1,5 +1,4 @@
 #!/usr/bin/env ruby
-
 require "nats/client"
 require "json"
 
