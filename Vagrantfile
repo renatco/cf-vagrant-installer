@@ -4,9 +4,8 @@
 Vagrant.configure("2") do |config|
   config.vm.define "cf-install"
   config.vm.box = "precise64"
-  
-  config.vm.network :forwarded_port, guest: 80, host: 8080
-
+  config.vm.hostname = "cf"
+ 
   config.vm.provider :virtualbox do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     v.customize ["modifyvm", :id, "--memory", "2048"]
@@ -21,6 +20,13 @@ Vagrant.configure("2") do |config|
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
   end
 
+  # Create a public network, which generally matched to bridged network.
+  # Bridged networks make the machine appear as another physical device on
+  # your network. When more than one local network detected, it will ask you 
+  # to select one to bridge.
+  config.vm.network :public_network
+
+
   config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
@@ -33,9 +39,12 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'sqlite'
     chef.add_recipe 'mysql::server'
     chef.add_recipe 'postgresql::server'
-    
+    chef.add_recipe 'avahi-daemon::enable'
+
     chef.add_recipe 'rbenv-alias'
     chef.add_recipe 'rbenv-sudo'
+    chef.add_recipe 'avahi'
+
     chef.add_recipe 'cloudfoundry::warden'
     chef.add_recipe 'cloudfoundry::dea'
     chef.add_recipe 'cloudfoundry::uaa'
