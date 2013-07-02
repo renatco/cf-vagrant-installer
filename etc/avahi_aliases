@@ -1,0 +1,12 @@
+# This file represents the CNAME aliases for the current host. It gets
+# read by avahi_publisher upon every change.
+
+## known aliases
+api.$fqdn
+login.$fqdn
+ports.$fqdn
+
+## app aliases (auto-filled by appmdns).
+## do not add anything below.
+76611500ae45af19041c86609745d126.cf.local
+q.cf.local
