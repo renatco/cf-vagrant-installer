@@ -28,7 +28,7 @@ from encodings.idna import ToASCII
 
 log = logging.getLogger()
 
-ALIAS_FILE = '/vagrant/avahi/avahi_aliases'
+ALIAS_FILE = '/vagrant/avahi/aliases'
 
 # Got these from /usr/include/avahi-common/defs.h
 CLASS_IN = 0x01
@@ -85,9 +85,7 @@ def reload_aliases():
         for line in f.readlines():
             cname = line.strip()            
             if cname.startswith('#') or cname == '':
-                continue
-            #if '$fqdn' in cname:
-            #    cname = cname.replace('$fqdn', get_fqdn())
+                continue            
             publish_cname(cname)
 
 def get_fqdn():
@@ -98,9 +96,7 @@ def get_fqdn():
         return hostname
 
 def serve_aliases():
-    def handler(signum, frame):
-        # as `handler` will be invoked for every change under /s/etc/,
-        # we must check if the modified file was ALIAS_FILE.
+    def handler(signum, frame):        
         mtime = os.path.getmtime(ALIAS_FILE)
         if mtime == handler.last_mtime:
             return
@@ -128,7 +124,8 @@ def main():
         if '.' not in hostname:
             hostname += '.local'
         log.info("Serving " + hostname)
-        publish_cname("api." + hostname)
+        publish_cname("api." + hostname)   # Cloud Controller
+        publish_cname("login." + hostname) # UAA
         serve_aliases()
     except KeyboardInterrupt:
         log.info("Exiting")
