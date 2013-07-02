@@ -8,3 +8,4 @@ chef/tmp
 logs/
 db/*.db
 .idea/
+avahi/aliases
