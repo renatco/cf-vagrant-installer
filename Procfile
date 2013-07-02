@@ -7,3 +7,5 @@ dea_ng: ./bin/dea_ng
 gorouter: ./bin/gorouter
 cc_ng: ./bin/cloud_controller
 health_manager: ./bin/health_manager
+avahi_publisher: ./avahi/avahi_publisher.py
+avahi_router_register_listener: avahi/router_register_listener.rb
