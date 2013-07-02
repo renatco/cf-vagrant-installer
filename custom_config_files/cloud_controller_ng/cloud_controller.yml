@@ -1,24 +1,25 @@
 ---
-local_route: 127.0.0.1
+local_route: cf.local
 port: 8181
 pid_filename: /tmp/cloud_controller.pid
 message_bus_uri: nats://127.0.0.1:4222
 
-external_domain: api2.vcap.me
+external_domain: 
+  - api.cf.local
 
 bootstrap_admin_email: sre@vmware.com
 
 system_domain_organization: my-org-name
-system_domain: vcap.me
+system_domain: cf.local
 app_domains:
-  - vcap.me
+  - cf.local
 
 info:
-  name: "vcap"
+  name: "Cloud Foundry Vagrant Installer"
   build: "2222"
   version: 2
-  support_address: "http://support.cloudfoundry.com"
-  description: "Cloud Foundry sponsored by Pivotal"
+  support_address: "https://github.com/Altoros/cf-vagrant-installer"
+  description: "Cloud Foundry ivagrant installer developed by Altoros.com"
   api_version: "2.0.0"
 # TODO: put back once json schema is sorted out
 # allow_debug: false
@@ -37,7 +38,7 @@ db:
   pool_timeout: 10
 
 uaa:
-  url: "http://localhost:8080/uaa"
+  url: "http://login.cf.local:8080/uaa"
   resource_id: "cloud_controller"
   symmetric_secret: "tokensecret"
 
