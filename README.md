@@ -14,11 +14,7 @@ This project provides a mechanism to automate several tasks to be able to set up
 
 ## Requirements
 
-* Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com/. After installing, make sure it is available with the following command: 
-
-```
-vagrant --version
-```
+* Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com
 
 * The Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
 
@@ -52,6 +48,17 @@ Initialize the Vagrant VM using the default VirtualBox provider.
 ```
 vagrant up
 ```
+Given that the VM will be accessable from outside, this process might ask you the network interface which will be used to bridge the VM network interface (see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
+
+Example:
+```
+[cf-install] Available bridged network interfaces:
+1) en0: Wi-Fi (AirPort)
+2) p2p0
+What interface should the network bridge to?
+```
+In my case it will be number 1. 
+After booting, CF will be accessable from any computer in your LAN: api.cf.local
 
 #### Using VMware Fusion / Workstation
 Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
@@ -86,24 +93,23 @@ foreman start
 
 ## Test Your New Cloud Foundry (v2) Instance
 
-(this has to be done inside the VM)
 * Set up your PaaS account
 
 > CF must be up and running
 
 ```
-cd /vagrant
+# From repository root directory
 rake cf:init_cf_cli
 ```
+> If you need to access this CF instance again, the target url is: api.cf.local
 
 * Push a very simple sinatra application
 
 ```
-cd /vagrant/test-apps/sinatra-test-app
+cd test-apps/sinatra-test-app
 cf push
 ```
 Leave the default values
-
 
 Expected output:
 
@@ -133,7 +139,7 @@ OK
 Check if the app is running and working ok:
 
 ```
-curl hello.vcap.me
+curl hello.cf.local
 
 Hello from 0.0.0.0:<some assigned port>!
 ```
