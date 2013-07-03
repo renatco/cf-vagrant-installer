@@ -35,13 +35,8 @@ namespace :cf do
     %w(warden/warden cloud_controller_ng dea_ng health_manager)
   end
 
-  def cf_components
-    cf_ruby_components + %w(uaa gorouter)
-  end
-
   desc "bootstrap all cf components"
-  task :bootstrap => [:copy_custom_conf_files,
-        :bundle_install, :init_uaa,
+  task :bootstrap => [ :bundle_install, :init_uaa,
         :init_cloud_controller_ng, :init_gorouter, 
         :setup_warden, :create_upstart_init_scripts,
         :instructions ]
@@ -73,16 +68,6 @@ namespace :cf do
   task :init_uaa do
     Dir.chdir root_path + '/uaa'
     system "mvn package -DskipTests"
-  end
-
-  desc "copy custom config files"
-  task :copy_custom_conf_files do
-    cf_components.each do |c|
-      cmd = "cp #{root_path}/custom_config_files/#{c}/*.yml #{root_path}/#{c}/config/"
-      puts "==> Copying #{c} config file"
-      puts "==> #{cmd}"
-      system cmd
-    end
   end
 
   desc "set up warden"
