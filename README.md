@@ -48,7 +48,7 @@ Initialize the Vagrant VM using the default VirtualBox provider.
 ```
 vagrant up
 ```
-Given that the VM will be accessable from outside, this process might ask you the network interface which will be used to bridge the VM network interface (see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
+Given that the VM will be accessible from outside, this process might ask you the network interface which will be used to bridge the VM network interface (see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
 
 Example:
 ```
@@ -58,7 +58,7 @@ Example:
 What interface should the network bridge to?
 ```
 In my case it will be number 1. 
-After booting, CF will be accessable from any computer in your LAN: api.cf.local
+After booting, CF will be accessible from any computer in your LAN: api.cf.local
 
 #### Using VMware Fusion / Workstation
 Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
