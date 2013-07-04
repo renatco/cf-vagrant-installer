@@ -1,7 +1,7 @@
 ---
 applications:
 - name: hello
-  memory: 256M
+  memory: 64M
   instances: 1
   url: hello.vcap.me
   path: .
