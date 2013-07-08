@@ -37,7 +37,7 @@ namespace :cf do
 
   desc "bootstrap all cf components"
   task :bootstrap => [ :bundle_install, :init_uaa,
-        :init_cloud_controller_ng, :init_gorouter, 
+        :init_cloud_controller_ng, :init_gorouter,
         :setup_warden, :create_upstart_init_scripts,
         :instructions ]
 
@@ -86,27 +86,33 @@ namespace :cf do
   desc "Set up Upstart init scripts"
   task :create_upstart_init_scripts do
     puts "==> Exporting foreman processes to upstart init config files..."
-    Dir.chdir root_path 
+    Dir.chdir root_path
     system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant --template upstart-templates"
   end
 
   desc "Print instructions"
   task :instructions do
-    puts 
-    puts
-    puts "*** Running Cloud Foundry and first steps ***"
-    puts "- Run Cloud Foundry:"
-    puts "    $ /vagrant/start.sh"
-    puts "- Wait until UAA finishes starting. You can check the status by running:"
-    puts "    $ tail -f /vagrant/logs/uaa.log"
-    puts "- Initialize the cf CLI and create a default organization, space, etc:"
-    puts "    $ rake cf:init_cf_cli"
-    puts "- Push a very simple ruby sinatra app:"
-    puts "    $ cd /vagrant/test-apps/sinatra-test-app/"
-    puts "    $ cf push   (follow the defaults)"
-    puts "- Test it: "
-    puts "    $ curl -v hello.vcap.me  (It should print 'Hello!')"
-    puts 
-    puts
-  end  
+msg = <<-EOS
+
+*** Running Cloud Foundry and first steps ***
+
+- Run Cloud Foundry:
+  $ /vagrant/start.sh
+
+- Wait until UAA finishes starting. You can check the status by running:
+  $ tail -f /vagrant/logs/uaa.log
+
+- Initialize the cf CLI and create a default organization, space, etc:
+  $ rake cf:init_cf_cli"
+
+- Push a very simple ruby sinatra app:
+  $ cd /vagrant/test-apps/sinatra-test-app/
+  $ cf push   (follow the defaults)
+
+- Test it:
+  $ curl -v hello.vcap.me  (It should print 'Hello!')
+
+EOS
+puts msg
+  end
 end
