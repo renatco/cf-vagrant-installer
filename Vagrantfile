@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.define "cf-install"
   config.vm.box = "precise64"
-
+  
   config.vm.network :forwarded_port, host: 80, guest: 80
   config.vm.network :forwarded_port, host: 8080, guest: 8080
   config.vm.network :forwarded_port, host: 8181, guest: 8181
