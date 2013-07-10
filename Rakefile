@@ -1,5 +1,13 @@
 require 'rake'
 
+task :default => 'test:unit'
+
+namespace :test do
+  task :unit do
+    puts "...ok"
+  end
+end
+
 namespace :host do
 
   desc "Initialize repos and vagrant vm"
