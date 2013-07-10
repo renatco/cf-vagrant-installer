@@ -1,6 +1,6 @@
 before_install:
  - sudo apt-get update -qq
- - sudo apt-get install -qq [vagrant]
+ - sudo apt-get install -y [vagrant]
  - vagrant plugin install vagrant-berkshelf
 
 language: ruby
