@@ -4,7 +4,7 @@ task :default => 'test:unit'
 
 namespace :test do
   task :unit do
-    puts "...ok"
+    Rake::Task["host:bootstrap"].invoke
   end
 end
 
