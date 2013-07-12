@@ -26,6 +26,12 @@ vagrant --version
 vagrant plugin install vagrant-berkshelf
 ```
 
+* Install omnibus plugin to update the chef client version for vagrant
+
+```
+vagrant plugin install vagrant-omnibus
+```
+
 * Ruby 1.9.3
 
 * (Optional) The VMware Fusion or VMware Workstation provider. If you do not have these installed, you can use the default VirtualBox provider. To install:
