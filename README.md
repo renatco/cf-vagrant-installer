@@ -2,46 +2,33 @@
 
 This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
 
-* NATS
-* Warden
-* DEA
-  * Directory Server
-  * File Server
 * Cloud Controller
+* NATS
+* DEA
 * Gorouter
 * UAA
+* Warden
 * Health Manager
 
 ## Requirements
 
-* Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com/. After installing, make sure it is available with the following command: 
-
-```
-vagrant --version
-```
-
-* The Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
-
-```
-vagrant plugin install vagrant-berkshelf
-```
-
-* Install omnibus plugin to update the chef client version for vagrant
-
-```
-vagrant plugin install vagrant-omnibus
-```
+* Vagrant
+    - Download it from http://www.vagrantup.com (version 1.2 or higher)
+    - Install required plugins:  
+     `vagrant plugin install vagrant-berkshelf`  
+     `vagrant plugin install vagrant-omnibus`
 
 * Ruby 1.9.3
 
-* (Optional) The VMware Fusion or VMware Workstation provider. If you do not have these installed, you can use the default VirtualBox provider. To install:
-    - Fusion: 
-        - vagrant plugin install vagrant-vmware-fusion
-        - vagrant plugin license vagrant-vmware-fusion license.lic
-    - Workstation:
-        - vagrant plugin install vagrant-vmware-workstation
-        - vagrant plugin license vagrant-vmware-workstation license.lic
-    - Reference: http://docs.vagrantup.com/v2/vmware/index.html
+* (Optional) The VMware Fusion or VMware Workstation provider.  
+If you do not have these installed, you can use the default VirtualBox provider (http://docs.vagrantup.com/v2/vmware/index.html)
+    - Fusion:      
+      `vagrant plugin install vagrant-vmware-fusion`  
+      `vagrant plugin license vagrant-vmware-fusion license.lic`
+
+    - Workstation:  
+      `vagrant plugin install vagrant-vmware-workstation`  
+      `vagrant plugin license vagrant-vmware-workstation license.lic`  
 
 ## Installation
 
@@ -97,23 +84,21 @@ foreman start
 
 ## Test Your New Cloud Foundry (v2) Instance
 
-(this has to be done inside the VM)
+> This has to be done inside the VM. Also, CF must be up and running
+
 * Set up your PaaS account
-
-> CF must be up and running
-
+* 
 ```
 cd /vagrant
 rake cf:init_cf_cli
 ```
 
 * Push a very simple sinatra application
-
+* 
 ```
 cd /vagrant/test-apps/sinatra-test-app
 cf push
 ```
-Leave the default values
 
 
 Expected output:
