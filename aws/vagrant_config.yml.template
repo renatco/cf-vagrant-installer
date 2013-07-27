@@ -1,0 +1,17 @@
+# MAKE A COPY OF THIS FILE AND NAME IT: vagrant_config.yml WITH YOUR PERSONAL DATA
+access_key_id : 'YOUR AWS ACCESS KEY'
+secret_access_key : 'YOUR AWS SECRET KEY'
+keypair_name : 'YOUR AWS KEYPAIR NAME'
+
+# Precise 12.04 LTS amd64 ebs instance type
+# You can check amis from other regions here: http://cloud-images.ubuntu.com/locator/ec2/
+region : 'us-east-1'
+ami : 'ami-23d9a94a'
+instance_type : 'm1.small'
+
+# You'll have to create a security group with all open ports (just for testing) and name it 'open'
+# You can do this from the AWS console
+# http://docs.aws.amazon.com/gettingstarted/latest/wah/getting-started-security-group.html
+# ToDo: automate
+security_groups : ['open']
+ssh.private_key_path : '/PATH/TO/YOUR/AWS/PRIVATE/KEY'
