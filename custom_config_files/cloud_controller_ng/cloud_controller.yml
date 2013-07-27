@@ -5,7 +5,7 @@ pid_filename: /tmp/cloud_controller.pid
 nats_uri: nats://127.0.0.1:4222
 message_bus_uri: nats://127.0.0.1:4222
 
-external_domain: api2.vcap.me
+external_domain: api.vcap.me
 
 bootstrap_admin_email: sre@vmware.com
 
@@ -38,7 +38,7 @@ db:
   pool_timeout: 10
 
 uaa:
-  url: "http://localhost:8080/uaa"
+  url: "http://vcap.me:8080/uaa"
   resource_id: "cloud_controller"
   symmetric_secret: "tokensecret"
 
