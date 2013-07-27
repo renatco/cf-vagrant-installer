@@ -10,3 +10,4 @@ db/*.db
 .idea/
 .DS_Store
 tags
+aws/vagrant_config.yml
