@@ -2,18 +2,17 @@
 
 This project provides a mechanism to automate several tasks to be able to set up a Vagrant VM with the following V2 (NG) Cloud Foundry components:
 
-* NATS
-* Warden
-* DEA
-  * Directory Server
-  * File Server
 * Cloud Controller
+* NATS
+* DEA
 * Gorouter
 * UAA
+* Warden
 * Health Manager
 
 ## Requirements
 
+<<<<<<< HEAD
 * Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com
 
 * The Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
@@ -21,17 +20,25 @@ This project provides a mechanism to automate several tasks to be able to set up
 ```
 vagrant plugin install vagrant-berkshelf
 ```
+=======
+* Vagrant
+    - Download it from http://www.vagrantup.com (version 1.2 or higher)
+    - Install required plugins:  
+     `vagrant plugin install vagrant-berkshelf`  
+     `vagrant plugin install vagrant-omnibus`
+>>>>>>> master
 
 * Ruby 1.9.3
 
-* (Optional) The VMware Fusion or VMware Workstation provider. If you do not have these installed, you can use the default VirtualBox provider. To install:
-    - Fusion: 
-        - vagrant plugin install vagrant-vmware-fusion
-        - vagrant plugin license vagrant-vmware-fusion license.lic
-    - Workstation:
-        - vagrant plugin install vagrant-vmware-workstation
-        - vagrant plugin license vagrant-vmware-workstation license.lic
-    - Reference: http://docs.vagrantup.com/v2/vmware/index.html
+* (Optional) The VMware Fusion or VMware Workstation provider.  
+If you do not have these installed, you can use the default VirtualBox provider (http://docs.vagrantup.com/v2/vmware/index.html)
+    - Fusion:      
+      `vagrant plugin install vagrant-vmware-fusion`  
+      `vagrant plugin license vagrant-vmware-fusion license.lic`
+
+    - Workstation:  
+      `vagrant plugin install vagrant-vmware-workstation`  
+      `vagrant plugin license vagrant-vmware-workstation license.lic`  
 
 ## Installation
 
@@ -72,13 +79,18 @@ Workstation: vagrant up --provider=vmware_workstation
 
 ## Running Cloud Foundry
 
-> If you are using vmware_fusion, please refer to the *Cleaning and Starting Up* section [here] (vmware/VMware-Instructions.md)
+Cloud Foundry will be bootstrapped the first time the Vagrant provisioner runs.  After the bootstrap is complete, an upstart configuration will be generated to automatically start Cloud Foundry at boot.
+
+The following commands may be helpful if you wish to manually start and stop Cloud Foundry.
 
 ```
 # shell into the VM if you are not already there
 vagrant ssh
 
+# cd into directory shared with the host
 cd /vagrant
+
+# start Cloud Foundry
 ./start.sh
 
 # Also, to stop:
@@ -93,10 +105,16 @@ foreman start
 
 ## Test Your New Cloud Foundry (v2) Instance
 
+<<<<<<< HEAD
 * Set up your PaaS account
 
 > CF must be up and running
+=======
+> This has to be done inside the VM. Also, CF must be up and running
+>>>>>>> master
 
+* Set up your PaaS account
+* 
 ```
 # From repository root directory
 rake cf:init_cf_cli
@@ -104,12 +122,11 @@ rake cf:init_cf_cli
 > If you need to access this CF instance again, the target url is: api.cf.local
 
 * Push a very simple sinatra application
-
+* 
 ```
 cd test-apps/sinatra-test-app
 cf push
 ```
-Leave the default values
 
 Expected output:
 

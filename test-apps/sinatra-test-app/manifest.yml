@@ -3,5 +3,6 @@ applications:
 - name: hello
   memory: 64M
   instances: 1
-  url: hello.vcap.me
+  host: hello
+  domain: vcap.me
   path: .

@@ -9,3 +9,5 @@ logs/
 db/*.db
 .idea/
 avahi/aliases
+.DS_Store
+tags

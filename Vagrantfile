@@ -1,11 +1,13 @@
 # -*- mode: ruby -*-
-# vi: set ft=ruby :
+# vim: set ft=ruby sw=2 :
 
 Vagrant.configure("2") do |config|
+  config.omnibus.chef_version = "11.4.0"
+
   config.vm.define "cf-install"
   config.vm.box = "precise64"
   config.vm.hostname = "cf"
- 
+
   config.vm.provider :virtualbox do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     v.customize ["modifyvm", :id, "--memory", "2048"]
@@ -13,11 +15,12 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :vmware_fusion do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+    v.vmx['memsize'] = 2048
   end
 
   config.vm.provider :vmware_workstation do |v, override|
-    v.vmx['memsize'] = 2048
     override.vm.box_url = "http://files.vagrantup.com/precise64_vmware.box"
+    v.vmx['memsize'] = 2048
   end
 
   # Create a public network, which generally matched to bridged network.
@@ -30,6 +33,8 @@ Vagrant.configure("2") do |config|
   config.berkshelf.enabled = true
 
   config.vm.provision :chef_solo do |chef|
+    chef.add_recipe 'cloudfoundry::vagrant-provision-start'
+
     chef.add_recipe 'apt::default'
     chef.add_recipe 'git'
     chef.add_recipe 'chef-golang'
@@ -48,7 +53,10 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'cloudfoundry::warden'
     chef.add_recipe 'cloudfoundry::dea'
     chef.add_recipe 'cloudfoundry::uaa'
+    chef.add_recipe 'cloudfoundry::cc'
     chef.add_recipe 'cloudfoundry::cf_bootstrap'
+
+    chef.add_recipe 'cloudfoundry::vagrant-provision-end'
 
     chef.json = {
       'rbenv' => {
