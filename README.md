@@ -12,21 +12,11 @@ This project provides a mechanism to automate several tasks to be able to set up
 
 ## Requirements
 
-<<<<<<< HEAD
-* Vagrant version 1.2 or higher. Vagrant can be downloaded from http://www.vagrantup.com
-
-* The Berkshelf plugin for Vagrant. After installing Vagrant, run this command to get the plugin: 
-
-```
-vagrant plugin install vagrant-berkshelf
-```
-=======
 * Vagrant
     - Download it from http://www.vagrantup.com (version 1.2 or higher)
     - Install required plugins:  
      `vagrant plugin install vagrant-berkshelf`  
      `vagrant plugin install vagrant-omnibus`
->>>>>>> master
 
 * Ruby 1.9.3
 
@@ -105,16 +95,11 @@ foreman start
 
 ## Test Your New Cloud Foundry (v2) Instance
 
-<<<<<<< HEAD
 * Set up your PaaS account
 
 > CF must be up and running
-=======
-> This has to be done inside the VM. Also, CF must be up and running
->>>>>>> master
 
-* Set up your PaaS account
-* 
+*
 ```
 # From repository root directory
 rake cf:init_cf_cli
@@ -149,6 +134,7 @@ Installing ruby.
        Cleaning up the bundler cache.
 -----> Uploading staged droplet (21M)
 Checking hello...
+  ...
   1/1 instances: 1 running
 OK
 ```
@@ -167,7 +153,7 @@ cf apps
 Getting applications in myspace... OK
 
 name    status    usage     url          
-hello   running   1 x 64M   hello.vcap.me
+hello   running   1 x 64M   hello.cf.local
 ```
 There is also a node.js sample app in test-apps
 
