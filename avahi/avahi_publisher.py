@@ -126,6 +126,8 @@ def main():
         log.info("Serving " + hostname)
         publish_cname("api." + hostname)   # Cloud Controller
         publish_cname("login." + hostname) # UAA
+        if not os.path.exists(ALIAS_FILE):
+            open(ALIAS_FILE, 'w').close()
         serve_aliases()
     except KeyboardInterrupt:
         log.info("Exiting")
