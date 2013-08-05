@@ -1,4 +1,4 @@
-pid: /var/vcap/sys/run/uaa.pid
+pid: /tmp/uaa.pid
 mbus: nats://localhost:4222
 oauth:
   client:
