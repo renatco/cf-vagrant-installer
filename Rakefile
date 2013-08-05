@@ -47,7 +47,7 @@ namespace :cf do
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
         :init_gorouter, :setup_warden,
-        :create_upstart_init_scripts, :instructions ]
+        :copy_upstart_init_scripts, :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -98,10 +98,9 @@ namespace :cf do
   end
 
   desc "Set up Upstart init scripts"
-  task :create_upstart_init_scripts do
-    puts "==> Exporting foreman processes to upstart init config files..."
-    Dir.chdir root_path
-    system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant --template upstart-templates"
+  task :copy_upstart_init_scripts do
+    puts "==> Copying Cloud Foundry upstart config files..."
+    system "cp /vagrant/init/*.conf /etc/init"
   end
 
   desc "Print instructions"
