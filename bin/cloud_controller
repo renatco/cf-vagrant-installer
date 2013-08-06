@@ -3,4 +3,4 @@
 cd /vagrant/cloud_controller_ng
 CLOUD_CONTROLLER_NG_CONFIG=/vagrant/custom_config_files/cloud_controller_ng/cloud_controller.yml bundle exec rake db:migrate 
 
-/vagrant/cloud_controller_ng/bin/cloud_controller -c /vagrant/custom_config_files/cloud_controller_ng/cloud_controller.yml
+/vagrant/cloud_controller_ng/bin/cloud_controller -m -c /vagrant/custom_config_files/cloud_controller_ng/cloud_controller.yml
