@@ -53,7 +53,6 @@ namespace :cf do
   task :bundle_install do
     cf_ruby_components.each{|c| bundle_install path(c)}
     system "gem install cf --no-ri --no-rdoc"
-    system "gem install foreman --no-ri --no-rdoc"
     system "rbenv rehash"
   end
 
