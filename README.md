@@ -69,17 +69,20 @@ vagrant ssh
 # cd into directory shared with the host
 cd /vagrant
 
-# start Cloud Foundry
-./start.sh
+# Take a look if all Cloud Foundry components are up
+
+```
+initctl list | grep cf-
+```
+# Start Cloud Foundry
+```
+sudo initctl start cf
+```
 
 # Also, to stop:
-./stop.sh
 
 ```
-
-There is also a foreman alternative (http://ddollar.github.io/foreman/) which will print every single log into the console
-```
-foreman start
+sudo initctl stop cf
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
