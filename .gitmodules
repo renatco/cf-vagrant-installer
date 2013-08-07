@@ -16,3 +16,6 @@
 [submodule "uaa"]
 	path = uaa
 	url = https://github.com/cloudfoundry/uaa.git
+[submodule "vcap-yeti"]
+	path = vcap-yeti
+	url = git@github.com:cloudfoundry/vcap-yeti.git
