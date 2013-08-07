@@ -71,17 +71,14 @@ cd /vagrant
 
 # Take a look if all Cloud Foundry components are up
 
-```
 initctl list | grep cf-
-```
+
 # Start Cloud Foundry
-```
+
 sudo initctl start cf
-```
 
 # Also, to stop:
 
-```
 sudo initctl stop cf
 ```
 
