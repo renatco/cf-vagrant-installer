@@ -109,7 +109,7 @@ msg = <<-EOS
 *** Running Cloud Foundry and first steps ***
 
 - Run Cloud Foundry:
-  $ /vagrant/start.sh
+  $ sudo initctl start cf
 
 - Wait until UAA finishes starting. You can check the status by running:
   $ tail -f /vagrant/logs/uaa.log
