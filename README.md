@@ -70,10 +70,10 @@ vagrant ssh
 initctl list | grep cf-
 
 # Start Cloud Foundry
-sudo initctl start cf-ng
+sudo initctl start cf
 
 # Also, to stop:
-sudo initctl stop cf-ng
+sudo initctl stop cf
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
