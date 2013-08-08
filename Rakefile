@@ -1,12 +1,10 @@
 require 'rake'
+require 'rake/testtask'
 
-task :default => 'test:integration'
+task :default => :test
 
-namespace :test do
-
-  task :integration do
-
-  end
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/*_test.rb']
 end
 
 namespace :host do
