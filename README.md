@@ -75,11 +75,11 @@ initctl list | grep cf-
 
 # Start Cloud Foundry
 
-sudo initctl start cf
+sudo initctl start cf-ng
 
 # Also, to stop:
 
-sudo initctl stop cf
+sudo initctl stop cf-ng
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
