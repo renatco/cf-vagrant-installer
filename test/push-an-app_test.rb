@@ -10,7 +10,7 @@ class TestPushAnApp < MiniTest::Unit::TestCase
     system "cf space myspace"
   end
 
-  def push_sinatra_test_app(app_type)
+  def push_test_app(app_type)
     system "cd test/fixtures/apps/#{app_type}/ && cf push"
   end
 
