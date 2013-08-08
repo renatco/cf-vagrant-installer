@@ -10,11 +10,15 @@ class TestPushAnApp < MiniTest::Unit::TestCase
     system "cf space myspace"
   end
 
-  def push_sinatra_test_app
-    system "cd test-apps/sinatra-test-app/ && cf push"
+  def push_sinatra_test_app(app_type)
+    system "cd test-apps/#{app_type}/ && cf push"
   end
 
   def test_we_can_push_a_ruby_app
-    assert push_sinatra_test_app
+    assert push_test_app(:sinatra)
+  end
+
+  def test_we_can_push_a_nodejs_app
+    assert push_test_app(:nodejs)
   end
 end
