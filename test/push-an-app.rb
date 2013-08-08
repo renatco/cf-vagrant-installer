@@ -11,7 +11,7 @@ class TestPushAnApp < MiniTest::Unit::TestCase
   end
 
   def push_sinatra_test_app(app_type)
-    system "cd test-apps/#{app_type}/ && cf push"
+    system "cd test/fixtures/apps/#{app_type}/ && cf push"
   end
 
   def test_we_can_push_a_ruby_app

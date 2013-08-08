@@ -90,7 +90,7 @@ rake cf:init_cf_cli
 * Push a very simple sinatra application
 * 
 ```
-cd /vagrant/test-apps/sinatra-test-app
+cd /vagrant/test/fixtures/apps/sinatra
 cf push
 ```
 
@@ -136,7 +136,7 @@ Getting applications in myspace... OK
 name    status    usage     url          
 hello   running   1 x 64M   hello.vcap.me
 ```
-There is also a node.js sample app in test-apps
+There is also a node.js sample app in test/fixtures/apps
 
 ## Collaborate
 
