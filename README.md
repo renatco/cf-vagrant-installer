@@ -66,9 +66,6 @@ The following commands may be helpful if you wish to manually start and stop Clo
 # shell into the VM if you are not already there
 vagrant ssh
 
-# cd into directory shared with the host
-cd /vagrant
-
 # Take a look if all Cloud Foundry components are up
 
 initctl list | grep cf-
