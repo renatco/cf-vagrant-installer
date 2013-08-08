@@ -1,3 +1,4 @@
+#!/bin/bash
 cf target http://api.vcap.me:8181
 cf login --username admin --password password
 cf create-org myorg

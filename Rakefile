@@ -5,7 +5,7 @@ task :default => 'test:integration'
 namespace :test do
 
   task :integration do
-    system "bundle exec rspec spec/users/normal_user_spec.rb"
+
   end
 end
 
