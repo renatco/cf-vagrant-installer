@@ -1,4 +1,4 @@
-CF_UPSTART_FILE = "/etc/init/cf-ng.conf"
+CF_UPSTART_FILE = "/etc/init/cf.conf"
 
 execute "run rake cf:bootstrap" do
   command <<-BASH
