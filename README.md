@@ -67,15 +67,12 @@ The following commands may be helpful if you wish to manually start and stop Clo
 vagrant ssh
 
 # Take a look if all Cloud Foundry components are up
-
 initctl list | grep cf-
 
 # Start Cloud Foundry
-
 sudo initctl start cf-ng
 
 # Also, to stop:
-
 sudo initctl stop cf-ng
 ```
 
