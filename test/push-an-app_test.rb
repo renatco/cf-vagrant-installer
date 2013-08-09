@@ -1,7 +1,15 @@
 require "minitest/autorun"
 
-class TestPushAnApp < MiniTest::Unit::TestCase
-  def setup
+class CustomMiniTest
+  class Unit < MiniTest::Unit
+    def before_suites
+      before_all if respond_to? :before_all
+    end
+  end
+end
+
+class TestPushAnApp < CustomMiniTest::Unit::TestCase
+  def before_all
     cf_login_and_set_space
   end
 
