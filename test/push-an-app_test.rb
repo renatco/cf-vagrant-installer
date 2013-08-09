@@ -15,6 +15,11 @@ class TestPushAnApp < CustomMiniTest::Unit::TestCase
     cf_login_and_set_space
   end
 
+  def assert_app_is_up(url)
+    content = Net::HTTP.get URI(url)
+    assert_match content, /Hello/
+  end
+
   def delete_all_apps!
     return if system "cf apps" =~ /No applications/
     system "yes | cf delete hello hello-node"
@@ -34,8 +39,11 @@ class TestPushAnApp < CustomMiniTest::Unit::TestCase
   end
 
   def test_app_ruby_app_is_up
-    content = Net::HTTP.get URI('http://hello.vcap.me')
-    assert_match content, /Hello/
+    assert_app_is_up 'http://hello.vcap.me'
+  end
+
+  def test_app_nodejs_app_is_up
+    assert_app_is_up 'http://hello-node.vcap.me'
   end
 
   def test_we_can_push_a_nodejs_app
