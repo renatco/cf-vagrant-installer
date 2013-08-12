@@ -77,20 +77,14 @@ The following commands may be helpful if you wish to manually start and stop Clo
 # shell into the VM if you are not already there
 vagrant ssh
 
-# cd into directory shared with the host
-cd /vagrant
+# Take a look if all Cloud Foundry components are up
+initctl list | grep cf-
 
-# start Cloud Foundry
-./start.sh
+# Start Cloud Foundry
+sudo initctl start cf
 
 # Also, to stop:
-./stop.sh
-
-```
-
-There is also a foreman alternative (http://ddollar.github.io/foreman/) which will print every single log into the console
-```
-foreman start
+sudo initctl stop cf
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
@@ -109,7 +103,7 @@ rake cf:init_cf_cli
 * Push a very simple sinatra application
 * 
 ```
-cd test-apps/sinatra-test-app
+cd /vagrant/test/fixtures/apps/sinatra
 cf push
 ```
 
@@ -155,7 +149,7 @@ Getting applications in myspace... OK
 name    status    usage     url          
 hello   running   1 x 64M   hello.cf.local
 ```
-There is also a node.js sample app in test-apps
+There is also a node.js sample app in test/fixtures/apps
 
 ## Collaborate
 

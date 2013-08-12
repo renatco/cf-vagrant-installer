@@ -1,0 +1,1 @@
+nats-server --port 4222 --log /vagrant/logs/cf-nats-server.log
