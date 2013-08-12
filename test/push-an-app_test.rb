@@ -9,6 +9,10 @@ class CustomMiniTest
   end
 end
 
+def root_path
+  File.join File.dirname(__FILE__), "../"
+end
+
 class TestPushAnApp < CustomMiniTest::Unit::TestCase
   def before_all
     delete_all_apps!
@@ -26,21 +30,21 @@ class TestPushAnApp < CustomMiniTest::Unit::TestCase
   end
 
   def cf_login_and_set_space
-    system "cf login --username admin --password password >> /vagrant/logs/cf-tests-output.log"
-    system "cf space myspace  >> /vagrant/logs/cf-tests-output.log"
+    system "cf login --username admin --password password >> #{root_path}/logs/cf-tests-output.log"
+    system "cf space myspace  >> #{root_path}/logs/cf-tests-output.log"
   end
 
   def push_test_app(app_type)
-    system "cd test/fixtures/apps/#{app_type}/ && cf push  >> /vagrant/logs/cf-tests-output.log"
+    system "cd test/fixtures/apps/#{app_type}/ && cf push  >> #{root_path}/logs/cf-tests-output.log"
   end
 
   def test_we_can_push_a_ruby_app
     assert push_test_app :sinatra
-    assert_app_is_up 'http://hello.vcap.me'
+    assert_app_is_up 'http://hello.cf.local'
   end
 
   def test_we_can_push_a_nodejs_app
     assert push_test_app :nodejs
-    assert_app_is_up 'http://hello-node.vcap.me'
+    assert_app_is_up 'http://hello-node.cf.local'
   end
 end
