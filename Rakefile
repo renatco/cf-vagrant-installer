@@ -1,11 +1,10 @@
 require 'rake'
+require 'rake/testtask'
 
-task :default => 'test:unit'
+task :default => :test
 
-namespace :test do
-  task :unit do
-    Rake::Task["host:bootstrap"].invoke
-  end
+Rake::TestTask.new do |t|
+  t.test_files = FileList['test/*_test.rb']
 end
 
 namespace :host do
@@ -47,13 +46,12 @@ namespace :cf do
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
         :init_gorouter, :setup_warden,
-        :create_upstart_init_scripts, :instructions ]
+        :copy_upstart_init_scripts, :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
     cf_ruby_components.each{|c| bundle_install path(c)}
     system "gem install cf --no-ri --no-rdoc"
-    system "gem install foreman --no-ri --no-rdoc"
     system "rbenv rehash"
   end
 
@@ -98,10 +96,9 @@ namespace :cf do
   end
 
   desc "Set up Upstart init scripts"
-  task :create_upstart_init_scripts do
-    puts "==> Exporting foreman processes to upstart init config files..."
-    Dir.chdir root_path
-    system "rbenv sudo foreman export upstart /etc/init -a cf-ng --user vagrant --template upstart-templates"
+  task :copy_upstart_init_scripts do
+    puts "==> Copying Cloud Foundry upstart config files..."
+    system "cp /vagrant/init/*.conf /etc/init"
   end
 
   desc "Print instructions"
@@ -111,7 +108,7 @@ msg = <<-EOS
 *** Running Cloud Foundry and first steps ***
 
 - Run Cloud Foundry:
-  $ /vagrant/start.sh
+  $ sudo initctl start cf
 
 - Wait until UAA finishes starting. You can check the status by running:
   $ tail -f /vagrant/logs/uaa.log
