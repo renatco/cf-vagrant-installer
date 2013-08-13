@@ -36,15 +36,25 @@ If you do not have these installed, you can use the default VirtualBox provider 
 
 ```
 git clone https://github.com/Altoros/cf-vagrant-installer.git
-rake host:bootstrap
+cd cf-vagrant-installer
 ```
-# If you want to try an espe
+
+# If you want a particular version:
 
 ```
 git checkout tags/v1.0.0
 ```
-# If you wan to try one particular version:
+
+# If you want to try the edge version:
+
 Just use the master branch
+
+# Run the bootstrap
+
+```
+rake host:bootstrap
+
+```
 
 ### Provision The VM
 #### Using VirtualBox
