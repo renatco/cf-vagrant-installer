@@ -38,9 +38,6 @@ TTL = 60
 published = set()
 
 def publish_cname(cname):
-    if cname in published:
-        return
-
     if not cname.endswith(".local"):
         log.error("Not publishing a non-.local address: %s", cname)
         return
@@ -123,9 +120,12 @@ def main():
         # append .local to a non-fqdn
         if '.' not in hostname:
             hostname += '.local'
+        
         log.info("Serving " + hostname)
+        
         publish_cname("api." + hostname)   # Cloud Controller
         publish_cname("login." + hostname) # UAA
+        
         if not os.path.exists(ALIAS_FILE):
             open(ALIAS_FILE, 'w').close()
         serve_aliases()
