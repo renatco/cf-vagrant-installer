@@ -31,21 +31,20 @@ If you do not have these installed, you can use the default VirtualBox provider 
       `vagrant plugin license vagrant-vmware-workstation license.lic`  
 
 ## Installation
-
 ```
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
-rake host:bootstrap
 ```
 
 ### Provision The VM
 #### Using VirtualBox
 Initialize the Vagrant VM using the default VirtualBox provider. 
-
 ```
 vagrant up
 ```
-Given that the VM will be accessible from outside, this process might ask you the network interface which will be used to bridge the VM network interface (see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
+Given that the VM will be accessible from outside, this process might ask you the 
+network interface which will be used to bridge the VM network interface 
+(see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
 
 Example:
 ```
@@ -54,11 +53,14 @@ Example:
 2) p2p0
 What interface should the network bridge to?
 ```
-In my case it will be number 1. 
+In my case I will select option 1. 
+
 After booting, CF will be accessible from any computer in your LAN: api.cf.local
 
 #### Using VMware Fusion / Workstation
-Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing and using providers.  
+Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. 
+See the [Vagrant documentation](http://docs.vagrantup.com/v2/providers/index.html) for information on installing 
+and using providers.  
 
 > **Stop!!** If you are going to use the VMware provider, you **must** follow the instructions [here] (vmware/VMware-Instructions.md) first, or the next steps will result in an environment that will not work.
 
@@ -68,40 +70,31 @@ Workstation: vagrant up --provider=vmware_workstation
 ```
 
 ## Running Cloud Foundry
+Once the Virtual Machine initializarion process is finished, CF will be always started at boot time.
 
-Cloud Foundry will be bootstrapped the first time the Vagrant provisioner runs.  After the bootstrap is complete, an upstart configuration will be generated to automatically start Cloud Foundry at boot.
-
-The following commands may be helpful if you wish to manually start and stop Cloud Foundry.
+Handy scripts to start, stop and check CF status:
 
 ```
 # shell into the VM if you are not already there
 vagrant ssh
 
-# Take a look if all Cloud Foundry components are up
-initctl list | grep cf-
-
-# Start Cloud Foundry
-sudo initctl start cf
-
-# Also, to stop:
-sudo initctl stop cf
+cd /vagrant
+./start.sh
+./status.sh
+./stop.sh
 ```
 
 ## Test Your New Cloud Foundry (v2) Instance
 
 * Set up your PaaS account
+CF must be up and running and it has to be done from repository root directory
 
-> CF must be up and running
-
-*
 ```
-# From repository root directory
 rake cf:init_cf_cli
 ```
-> If you need to access this CF instance again, the target url is: api.cf.local
 
 * Push a very simple sinatra application
-* 
+
 ```
 cd /vagrant/test/fixtures/apps/sinatra
 cf push
@@ -110,27 +103,20 @@ cf push
 Expected output:
 
 ```
+Using manifest file manifest.yml
+
+Creating hello... OK
+
+Creating route hello.cf.local... OK
+Binding hello.cf.local to hello... OK
 Uploading hello... OK
-Starting hello... OK
------> Downloaded app package (4.0K)
-Installing ruby.
------> Using Ruby version: ruby-1.9.2
------> Installing dependencies using Bundler version 1.3.2
-       Running: bundle install --without development:test --path vendor/bundle --binstubs vendor/bundle/bin --deployment
-       Fetching gem metadata from http://rubygems.org/..........
-       Fetching gem metadata from http://rubygems.org/..
-       Installing rack (1.5.1)
-       Installing rack-protection (1.3.2)
-       Installing tilt (1.3.3)
-       Installing sinatra (1.3.4)
-       Using bundler (1.3.2)
-       Your bundle is complete! It was installed into ./vendor/bundle
-       Cleaning up the bundler cache.
------> Uploading staged droplet (21M)
-Checking hello...
+Preparing to start hello... OK
+Checking status of app 'hello'...
+  0 of 1 instances running (1 starting)
   ...
-  1/1 instances: 1 running
-OK
+  1 of 1 instances running (1 running)
+Push successful! App 'hello' available at http://hello.cf.local
+
 ```
 
 Check if the app is running and working ok:
@@ -138,7 +124,8 @@ Check if the app is running and working ok:
 ```
 curl hello.cf.local
 
-Hello from 0.0.0.0:<some assigned port>!
+  <h3>Sinatra Test app for CF Vagrant Installer</h3>
+      Hello from 0.0.0.0:61003! <br/>
 ```
 
 Use "cf apps" command to list the apps you pushed:
