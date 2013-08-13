@@ -98,7 +98,7 @@ namespace :cf do
   desc "Set up Upstart init scripts"
   task :copy_upstart_init_scripts do
     puts "==> Copying Cloud Foundry upstart config files..."
-    system "cp /vagrant/init/*.conf /etc/init"
+    system "sudo cp /vagrant/init/*.conf /etc/init"
   end
 
   desc "Print instructions"
