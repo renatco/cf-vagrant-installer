@@ -31,10 +31,29 @@ If you do not have these installed, you can use the default VirtualBox provider 
       `vagrant plugin license vagrant-vmware-workstation license.lic`  
 
 ## Installation
+
+### Clone the repo
+
 ```
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
+```
+
+### If you want to try a particular version:
+
+```
+git checkout tags/v1.0.0
+```
+
+### If you want to try the edge version:
+
+Just use the master branch
+
+### Run the bootstrap
+
+```
 rake host:bootstrap
+
 ```
 
 ### Provision The VM

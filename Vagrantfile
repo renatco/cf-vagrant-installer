@@ -11,6 +11,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     v.customize ["modifyvm", :id, "--memory", "2048"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
   config.vm.provider :vmware_fusion do |v, override|
@@ -42,9 +43,14 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'rbenv::user'
     chef.add_recipe 'java::openjdk'
     chef.add_recipe 'sqlite'
+<<<<<<< HEAD
     chef.add_recipe 'mysql::client'
     chef.add_recipe 'postgresql::client'
     chef.add_recipe 'avahi-daemon::enable'
+=======
+    chef.add_recipe 'mysql::server'
+    chef.add_recipe 'postgresql::server'
+>>>>>>> master
 
     chef.add_recipe 'rbenv-alias'
     chef.add_recipe 'rbenv-sudo'
@@ -60,8 +66,8 @@ Vagrant.configure("2") do |config|
 
     chef.json = {
       'rbenv' => {
-        'user_installs' => [ { 
-          'user' => 'vagrant', 
+        'user_installs' => [ {
+          'user' => 'vagrant',
           'global' => '1.9.3-p392',
           'rubies' => [ '1.9.3-p392' ],
           'gems' => {
@@ -80,4 +86,8 @@ Vagrant.configure("2") do |config|
       }
     }
   end
+<<<<<<< HEAD
 end
+=======
+end
+>>>>>>> master
