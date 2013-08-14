@@ -1,2 +1,2 @@
 #/bin/bash
-watch initctl list | grep cf-
+initctl list | grep cf-
