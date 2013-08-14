@@ -22,11 +22,6 @@ rescue NATS::ConnectError
   nil
 end
 
-def initialize
-  File.open(ALIAS_FILE, 'w') {}
-  wait_for_nats_to_start()
-end
-
 def update_aliases(uri)
   File.open(ALIAS_FILE, 'r+') do |file|
     file.each.any? do |line|
@@ -35,6 +30,9 @@ def update_aliases(uri)
   end
 end
 
+
+File.open(ALIAS_FILE, 'w') {}
+wait_for_nats_to_start()
 
 #TODO still have to manage the router.unregister messages
 NATS.start do
