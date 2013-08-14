@@ -59,7 +59,7 @@ namespace :cf do
   task :init_cloud_controller_ng do
     puts "Initializing cloud_controller_ng database."
     Dir.chdir root_path
-    system "rm db/cloud_controller.db"
+    system "[-f db/cloud_controller.db]  rm db/cloud_controller.db"
     Dir.chdir root_path + '/cloud_controller_ng'
     system "bundle exec rake db:migrate"
   end
@@ -117,8 +117,8 @@ msg = <<-EOS
   $ rake cf:init_cf_cli"
 
 - Push a very simple ruby sinatra app:
-  $ cd /vagrant/test-apps/sinatra-test-app/
-  $ cf push   (follow the defaults)
+  $ cd /vagrant/test/fixtures/apps/sinatra/
+  $ cf push
 
 - Test it:
   $ curl -v hello.vcap.me  (It should print 'Hello!')
