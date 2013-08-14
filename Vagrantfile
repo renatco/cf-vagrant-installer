@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
 
   # Create a public network, which generally matched to bridged network.
   # Bridged networks make the machine appear as another physical device on
-  # your network. When more than one local network detected, it will ask you 
+  # your network. When more than one local network detected, it will ask you
   # to select one to bridge.
   config.vm.network :public_network
 
@@ -43,15 +43,9 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'rbenv::user'
     chef.add_recipe 'java::openjdk'
     chef.add_recipe 'sqlite'
-<<<<<<< HEAD
     chef.add_recipe 'mysql::client'
     chef.add_recipe 'postgresql::client'
     chef.add_recipe 'avahi-daemon::enable'
-=======
-    chef.add_recipe 'mysql::server'
-    chef.add_recipe 'postgresql::server'
->>>>>>> master
-
     chef.add_recipe 'rbenv-alias'
     chef.add_recipe 'rbenv-sudo'
     chef.add_recipe 'avahi'
@@ -86,8 +80,4 @@ Vagrant.configure("2") do |config|
       }
     }
   end
-<<<<<<< HEAD
 end
-=======
-end
->>>>>>> master
