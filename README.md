@@ -34,6 +34,7 @@ If you do not have these installed, you can use the default VirtualBox provider 
 ```
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
+rake host:bootstrap
 ```
 
 ### Provision The VM
