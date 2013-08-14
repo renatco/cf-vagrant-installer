@@ -14,6 +14,7 @@ Vagrant.configure("2") do |config|
   config.vm.provider :virtualbox do |v, override|
     override.vm.box_url = "http://files.vagrantup.com/precise64.box"
     v.customize ["modifyvm", :id, "--memory", "2048"]
+    v.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
   config.vm.provider :vmware_fusion do |v, override|
@@ -40,7 +41,7 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'sqlite'
     chef.add_recipe 'mysql::server'
     chef.add_recipe 'postgresql::server'
-    
+
     chef.add_recipe 'rbenv-alias'
     chef.add_recipe 'rbenv-sudo'
     chef.add_recipe 'cloudfoundry::warden'
@@ -53,8 +54,8 @@ Vagrant.configure("2") do |config|
 
     chef.json = {
       'rbenv' => {
-        'user_installs' => [ { 
-          'user' => 'vagrant', 
+        'user_installs' => [ {
+          'user' => 'vagrant',
           'global' => '1.9.3-p392',
           'rubies' => [ '1.9.3-p392' ],
           'gems' => {
@@ -84,4 +85,3 @@ Vagrant.configure("2") do |config|
     }
   end
 end
-
