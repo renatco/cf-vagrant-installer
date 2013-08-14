@@ -42,8 +42,8 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'rbenv::user'
     chef.add_recipe 'java::openjdk'
     chef.add_recipe 'sqlite'
-    chef.add_recipe 'mysql::server'
-    chef.add_recipe 'postgresql::server'
+    chef.add_recipe 'mysql::client'
+    chef.add_recipe 'postgresql::client'
     chef.add_recipe 'avahi-daemon::enable'
 
     chef.add_recipe 'rbenv-alias'
@@ -77,16 +77,6 @@ Vagrant.configure("2") do |config|
           'installed' => '1.9.3-p392',
           'alias' => '1.9.3'
         } ]
-      },
-      'mysql' => {
-        'server_root_password' => '',
-        'server_repl_password' => '',
-        'server_debian_password' => ''
-      },
-      'postgresql' => {
-        'password' => {
-          'postgres' => ''
-        }
       }
     }
   end
