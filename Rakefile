@@ -46,7 +46,7 @@ namespace :cf do
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
         :init_gorouter, :setup_warden,
-        :copy_upstart_init_scripts, :instructions ]
+        :start_cf, :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -99,6 +99,12 @@ namespace :cf do
   task :copy_upstart_init_scripts do
     puts "==> Copying Cloud Foundry upstart config files..."
     system "sudo cp /vagrant/init/*.conf /etc/init"
+  end
+
+  desc "Run cf upstart job"
+  task :start_cf do
+    puts "==> Starting cf upstart Job"
+    system "sudo initctl start cf"
   end
 
   desc "Print instructions"
