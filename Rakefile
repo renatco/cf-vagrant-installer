@@ -102,7 +102,7 @@ namespace :cf do
   end
 
   desc "Run cf upstart job"
-  task :start_cf do
+  task :start_cf => :copy_upstart_init_scripts do
     puts "==> Starting cf upstart Job"
     system "sudo initctl start cf"
   end
