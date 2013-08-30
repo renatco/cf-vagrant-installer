@@ -42,6 +42,11 @@ namespace :cf do
     %w(warden/warden cloud_controller_ng dea_ng health_manager)
   end
 
+  def delete_cc_db!
+    cc_db_file = "#{root_path}/db/cloud_controller.db"
+    File.delete cc_db_file if File.exists? cc_db_file
+  end
+
   desc "bootstrap all cf components"
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
@@ -53,11 +58,6 @@ namespace :cf do
     cf_ruby_components.each{|c| bundle_install path(c)}
     system "gem install cf --no-ri --no-rdoc"
     system "rbenv rehash"
-  end
-
-  def delete_cc_db!
-    cc_db_file = "#{root_path}/db/cloud_controller.db"
-    File.delete cc_db_file if File.exists? cc_db_file
   end
 
   desc "Init cloud_controller_ng database - Erases it if exists"
