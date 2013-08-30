@@ -55,11 +55,16 @@ namespace :cf do
     system "rbenv rehash"
   end
 
+  def delete_cc_db!
+    cc_db_file = "#{root_path}/db/cloud_controller.db"
+    File.delete cc_db_file if File.exists? cc_db_file
+  end
+
   desc "Init cloud_controller_ng database - Erases it if exists"
   task :init_cloud_controller_ng do
-    puts "Initializing cloud_controller_ng database."
-    Dir.chdir root_path
-    system "rm db/cloud_controller.db"
+    puts "==> Deleting cloud_controller_ng database."
+    delete_cc_db!
+    puts "==> Runing migrations cloud_controller_ng database."
     Dir.chdir root_path + '/cloud_controller_ng'
     system "bundle exec rake db:migrate"
   end
@@ -79,14 +84,14 @@ namespace :cf do
   desc "Init dea"
   task :init_dea do
     Dir.chdir root_path + '/dea_ng'
-    system "rbenv sudo bundle exec rake dir_server:install"
+    system "bundle exec rake dir_server:install"
   end
 
   desc "set up warden"
   task :setup_warden do
     puts "==> Warden setup"
     Dir.chdir root_path + '/warden/warden'
-    system "rbenv sudo bundle exec rake setup:bin[/vagrant/custom_config_files/warden/warden/test_vm.yml]"
+    system "bundle exec rake setup:bin[/vagrant/custom_config_files/warden/warden/test_vm.yml]"
   end
 
   desc "Set target, login and create organization and spaces. CF must be up and running"
