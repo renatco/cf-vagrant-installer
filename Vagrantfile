@@ -28,7 +28,9 @@ Vagrant.configure("2") do |config|
   # Bridged networks make the machine appear as another physical device on
   # your network. When more than one local network detected, it will ask you
   # to select one to bridge.
-  config.vm.network :public_network
+  #config.vm.network :public_network
+  config.vm.network :private_network, ip: "192.168.111.111"
+
 
 
   config.berkshelf.enabled = true

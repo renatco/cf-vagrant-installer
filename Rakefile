@@ -42,11 +42,16 @@ namespace :cf do
     %w(warden/warden cloud_controller_ng dea_ng health_manager)
   end
 
+  def delete_cc_db!
+    cc_db_file = "#{root_path}/db/cloud_controller.db"
+    File.delete cc_db_file if File.exists? cc_db_file
+  end
+
   desc "bootstrap all cf components"
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
         :init_gorouter, :setup_warden,
-        :copy_upstart_init_scripts, :instructions ]
+        :start_cf, :instructions ]
 
   desc "Install required gems for all ruby components"
   task :bundle_install do
@@ -79,14 +84,14 @@ namespace :cf do
   desc "Init dea"
   task :init_dea do
     Dir.chdir root_path + '/dea_ng'
-    system "rbenv sudo bundle exec rake dir_server:install"
+    system "bundle exec rake dir_server:install"
   end
 
   desc "set up warden"
   task :setup_warden do
     puts "==> Warden setup"
     Dir.chdir root_path + '/warden/warden'
-    system "rbenv sudo bundle exec rake setup:bin[/vagrant/custom_config_files/warden/warden/test_vm.yml]"
+    system "bundle exec rake setup:bin[/vagrant/custom_config_files/warden/warden/test_vm.yml]"
   end
 
   desc "Set target, login and create organization and spaces. CF must be up and running"
@@ -99,6 +104,12 @@ namespace :cf do
   task :copy_upstart_init_scripts do
     puts "==> Copying Cloud Foundry upstart config files..."
     system "sudo cp /vagrant/init/*.conf /etc/init"
+  end
+
+  desc "Run cf upstart job"
+  task :start_cf => :copy_upstart_init_scripts do
+    puts "==> Starting cf upstart Job"
+    system "sudo initctl start cf"
   end
 
   desc "Print instructions"
@@ -121,7 +132,7 @@ msg = <<-EOS
   $ cf push
 
 - Test it:
-  $ curl -v hello.vcap.me  (It should print 'Hello!')
+  $ curl -v hello.cf.local  (It should print 'Hello!')
 
 EOS
 puts msg
