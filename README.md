@@ -34,20 +34,18 @@ If you do not have these installed, you can use the default VirtualBox provider 
 
 ### Clone the repo
 
+> If you want to try the edge version:
+
 ```
 git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
 ```
 
-### If you want to try a particular version:
+> If you want to try a particular version:
 
 ```
 git checkout tags/v1.0.0
 ```
-
-### If you want to try the edge version:
-
-Just use the master branch
 
 ### Run the bootstrap
 
@@ -62,20 +60,11 @@ Initialize the Vagrant VM using the default VirtualBox provider.
 ```
 vagrant up
 ```
-Given that the VM will be accessible from outside, this process might ask you the 
-network interface which will be used to bridge the VM network interface 
-(see [vagrant public networks](http://docs.vagrantup.com/v2/networking/public_network.html))
+After booting, CF will be accessible from your host computer:
 
-Example:
 ```
-[cf-install] Available bridged network interfaces:
-1) en0: Wi-Fi (AirPort)
-2) p2p0
-What interface should the network bridge to?
+cf target http://api.cf.local
 ```
-In my case I will select option 1. 
-
-After booting, CF will be accessible from any computer in your LAN: api.cf.local
 
 #### Using VMware Fusion / Workstation
 Alternatively, you can use a different Vagrant provider such as the VMware Fusion or VMware Workstation provider. 
@@ -149,6 +138,7 @@ curl hello.cf.local
 ```
 
 Use "cf apps" command to list the apps you pushed:
+
 ```
 cf apps
 Getting applications in myspace... OK
