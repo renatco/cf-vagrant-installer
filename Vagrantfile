@@ -57,8 +57,9 @@ Vagrant.configure("2") do |config|
     chef.add_recipe 'cloudfoundry::uaa'
     chef.add_recipe 'cloudfoundry::cc'
     chef.add_recipe 'cloudfoundry::cf_bootstrap'
-
     chef.add_recipe 'cloudfoundry::vagrant-provision-end'
+
+    chef.add_recipe 'avahi::restart'
 
     chef.json = {
       'rbenv' => {
