@@ -9,6 +9,10 @@ end
 bash "start Cloud Foundry" do
     user "root"
     code <<-END_OF_SCRIPT
+      if /sbin/initctl status cf | grep -q running; then
+         echo "cf job is already running"
+      else
         /sbin/initctl start cf
+      fi
     END_OF_SCRIPT
 end
