@@ -42,11 +42,6 @@ namespace :cf do
     %w(warden/warden cloud_controller_ng dea_ng health_manager)
   end
 
-  def delete_cc_db!
-    cc_db_file = "#{root_path}/db/cloud_controller.db"
-    File.delete cc_db_file if File.exists? cc_db_file
-  end
-
   desc "bootstrap all cf components"
   task :bootstrap => [ :bundle_install, :init_uaa,
         :init_dea, :init_cloud_controller_ng,
@@ -63,10 +58,11 @@ namespace :cf do
   desc "Init cloud_controller_ng database - Erases it if exists"
   task :init_cloud_controller_ng do
     puts "Initializing cloud_controller_ng database."
-    Dir.chdir root_path
-    system "[-f db/cloud_controller.db]  rm db/cloud_controller.db"
+    cc_db_file = "#{root_path}/db/cloud_controller.db"
+    File.delete cc_db_file if File.exists? cc_db_file
+
     Dir.chdir root_path + '/cloud_controller_ng'
-    system "bundle exec rake db:migrate"
+    system "CLOUD_CONTROLLER_NG_CONFIG=/vagrant/custom_config_files/cloud_controller_ng/cloud_controller.yml bundle exec rake db:migrate"
   end
 
   desc "Init gorouter"
