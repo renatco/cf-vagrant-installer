@@ -169,6 +169,7 @@ ssh:
   $ cd /vagrant
   $ rake cf:setup_custom_buildpacks
 
+[Step by step instructions with example] (custom-buildpacks/custom-buildpacks.md)
 
 ## Collaborate
 
