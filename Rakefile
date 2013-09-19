@@ -141,8 +141,15 @@ namespace :cf do
 
   desc "Run cf upstart job"
   task :start_cf => :copy_upstart_init_scripts do
-    puts "==> Starting cf upstart Job"
-    system "sudo initctl start cf"
+    system %{
+    if sudo initctl status cf | grep -q stop
+    then
+      echo 'CF not runninng'
+      sudo initctl start cf
+    else
+      echo 'CF is already running'
+    fi
+    }
   end
 
   desc "Print instructions"
