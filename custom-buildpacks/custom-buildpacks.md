@@ -8,7 +8,7 @@ How does it help?
 Who can benefit?
 - Developers of custom buildpacks
 - Anyone who wants to know if a Buildpack X would work on Cloud Foundry
-- Software vendors who want to open get their products (in the form of buildpacks) to more users - this offers
+- Software vendors who want to get their products (in the form of buildpacks) to more users - this offers
 
 What are the use cases?
 - Developing and testing buildpacks
