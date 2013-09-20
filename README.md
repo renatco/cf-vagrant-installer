@@ -39,17 +39,14 @@ git clone https://github.com/Altoros/cf-vagrant-installer.git
 cd cf-vagrant-installer
 ```
 
-### If you want to try a particular version:
+> want to try a particular version?
 
 ```
 git checkout tags/v1.0.0
 ```
 
-### If you want to try the edge version:
 
-Just use the master branch
-
-### Run the bootstrap
+### Initialize submodules
 
 ```
 rake host:bootstrap
@@ -76,7 +73,7 @@ Workstation: vagrant up --provider=vmware_workstation
 
 ## Running Cloud Foundry
 
-Cloud Foundry will be bootstrapped the first time the Vagrant provisioner runs.  After the bootstrap is complete, an upstart configuration will be generated to automatically start Cloud Foundry at boot.
+Cloud Foundry will be bootstrapped the first time the Vagrant provisioner runs (it may take several minutes).  After the bootstrap is complete, an upstart configuration will be generated to automatically start Cloud Foundry at boot.
 
 The following commands may be helpful if you wish to manually start and stop Cloud Foundry.
 
@@ -85,7 +82,7 @@ The following commands may be helpful if you wish to manually start and stop Clo
 vagrant ssh
 cd /vagrant
 
-# Take a look if all Cloud Foundry components are up
+# List the status of each CF component
 ./status.sh
 
 # Start Cloud Foundry
@@ -100,14 +97,14 @@ cd /vagrant
 > Make sure your CF is up and running
 
 * Set up your PaaS account
-*
+
 ```
 # from the directory where you cloned the repo
 rake cf:init_cf_cli
 ```
 
 * Push a very simple sinatra application
-*
+
 ```
 cd test/fixtures/apps/sinatra
 cf push
@@ -148,21 +145,18 @@ hello   running   1 x 256M   hello.192.168.12.34.xip.io
 ```
 There is also a node.js sample app in test/fixtures/apps
 
-## Using custom buildpacks
+## Custom buildpacks power
+Now you can test any buildpacks (3rd party, or your own) with cf-vagrant-installer
 
-You can add custom buildpacks to cf-vagrant-installer installation.
-For this you need to drop your buildpack to `custom-buildpacks`
-directory and it will be automatically added to CF installation during
-next deployment. If you need to resync you buildpacks content with CF
-deployment you can use `rake cf:setup_custom_buildpacks` in vagrant
-ssh:
-```
-  $ vagrant ssh
-  $ cd /vagrant
-  $ rake cf:setup_custom_buildpacks
-```
+- How does it help?
+- What are the use cases?
+- What are they?
+- Step by step example
+- [Continue reading] (custom-buildpacks/custom-buildpacks.md)
 
-[Step by step instructions with example] (custom-buildpacks/custom-buildpacks.md)
+## Cloud Foundry documentation
+
+http://docs.cloudfoundry.com/
 
 ## Collaborate
 
