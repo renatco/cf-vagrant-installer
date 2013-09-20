@@ -133,6 +133,9 @@ Open a browser and check if the app has been deployed: hello.192.168.12.34.xip.i
 Sinatra Test app for CF Vagrant Installer
 
 Hello from 0.0.0.0:61007!
+..... Some environment info .....
+...
+...
 ```
 
 Use "cf apps" command to list the apps you pushed:
